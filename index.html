@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOC 2 Cloud Control Mapping (AWS) — Demonstration</title>
+  <meta name="description" content="Illustrative SOC 2 Trust Services Criteria to AWS control mapping with implementation details, evidence artifacts, and automated evidence collection in Bash, Python (boto3), PowerShell, and Athena SQL. A reusable work-sample template." />
+  <style>
+    :root{--bg:#0a0f1c;--bg-2:#0e1626;--panel:rgba(255,255,255,0.04);--panel-border:rgba(120,160,220,0.16);--text:#eaf0fb;--text-soft:#a9b7cf;--text-mute:#6f7f9c;--accent:#58a6ff;--accent-2:#7cc4ff;--accent-deep:#1d4ed8;--green:#4ade80;--amber:#fbbf24;--orange:#fb923c;--red:#f87171;--radius:14px;--max:1080px;--mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{color:var(--accent-2)}
+    code,pre{font-family:var(--mono)}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(10,15,28,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--panel-border)}
+    .topbar-inner{max-width:var(--max);margin:0 auto;height:60px;padding:0 24px;display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:600}
+    .brand-badge{width:34px;height:34px;border-radius:8px;background:#fff;color:#16202f;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;letter-spacing:-1px}
+    .brand small{display:block;font-size:.66rem;color:var(--text-mute);font-weight:500;letter-spacing:.05em}
+    .btn{margin-left:auto;display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:9px;font-size:.85rem;font-weight:600;border:1px solid var(--panel-border);color:var(--text-soft)}
+    .btn:hover{color:#fff;background:rgba(255,255,255,.06)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:clamp(32px,6vw,64px) 24px 80px}
+    .page-head{margin-bottom:40px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:600;color:var(--accent)}
+    .page-head h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin:12px 0 10px}
+    .page-head p.sub{color:var(--text-soft);font-size:1.05rem}
+    .divider{width:52px;height:3px;background:var(--accent);border-radius:2px;margin-top:18px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:44px}
+    .stat{padding:22px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--panel-border);text-align:center}
+    .stat .num{display:block;font-size:2rem;font-weight:700;line-height:1;margin-bottom:8px}
+    .stat .num.accent{background:linear-gradient(120deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .stat .lbl{font-size:.82rem;color:var(--text-soft)}
+    .block{margin-bottom:52px}
+    .block-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .block-head svg{color:var(--accent)}.block-head h2{font-size:1.3rem;font-weight:700}
+    .intro{color:var(--text-soft);font-size:.92rem;margin-bottom:20px;max-width:840px}
+    .card{padding:20px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--panel-border)}
+    /* env */
+    .company{padding:26px}
+    .company-head{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    .company-logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#FF9900,#232F3E);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .company-head h3{font-size:1.15rem;font-weight:650}.company-tag{font-size:.88rem;color:var(--text-mute)}
+    .company-details{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-bottom:18px}
+    .di{display:flex;flex-direction:column;gap:2px}.dk{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}.di span:last-child{font-size:.88rem;color:var(--text-soft)}
+    .svc-strip{display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid var(--panel-border);padding-top:16px}
+    .svc-badge{font-family:var(--mono);font-size:.74rem;padding:3px 9px;border-radius:6px;background:rgba(88,166,255,.08);border:1px solid var(--panel-border);color:var(--accent-2)}
+    /* tsc grid */
+    .tsc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .tsc-card{padding:18px;border-radius:12px;background:var(--panel);border:1px solid var(--panel-border)}
+    .tsc-card.uncov{opacity:.5}
+    .tsc-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .tsc-id{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:.9rem}
+    .tsc-count{font-size:.7rem;color:var(--text-mute)}
+    .tsc-card h5{font-size:.92rem;font-weight:650;margin-bottom:6px}
+    .tsc-card p{font-size:.78rem;color:var(--text-soft);line-height:1.5}
+    .tsc-ctrls{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+    .tsc-ctrl{font-family:var(--mono);font-size:.66rem;padding:2px 6px;border-radius:5px;background:rgba(88,166,255,.1);color:var(--accent-2)}
+    /* table */
+    .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .filters .fl{font-size:.8rem;color:var(--text-mute)}
+    .fbtn{padding:6px 12px;border-radius:8px;font-size:.8rem;cursor:pointer;color:var(--text-soft);background:transparent;border:1px solid var(--panel-border)}
+    .fbtn:hover{color:var(--text);background:rgba(255,255,255,.05)}.fbtn.active{color:#fff;background:rgba(88,166,255,.18);border-color:var(--accent)}
+    .table-wrap{overflow-x:auto;border:1px solid var(--panel-border);border-radius:var(--radius)}
+    table{width:100%;border-collapse:collapse;min-width:720px}
+    thead th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-mute);padding:11px 12px;border-bottom:1px solid var(--panel-border);background:rgba(255,255,255,.02)}
+    tbody td{padding:11px 12px;font-size:.84rem;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle}
+    .cid{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+    .cname{font-weight:600;color:var(--text)}
+    .tsc-badge{font-family:var(--mono);font-size:.72rem;padding:2px 8px;border-radius:6px;background:rgba(88,166,255,.1);color:var(--accent-2)}
+    .svc{font-size:.78rem;color:var(--text-mute)}
+    .st{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:600;background:rgba(74,222,128,.12);color:#86efac;border:1px solid rgba(74,222,128,.3)}
+    .row-main{cursor:pointer;transition:background .15s}.row-main:hover{background:rgba(88,166,255,.05)}
+    .exp-cell{text-align:center;color:var(--text-mute);width:32px}
+    .detail-row td{background:rgba(0,0,0,.2)}
+    .exp{padding:8px 4px;display:grid;gap:16px}
+    .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .exp b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:6px}
+    .exp p{font-size:.85rem;color:var(--text-soft)}
+    .cfg{margin:0 0 0 18px}.cfg li{font-size:.82rem;color:var(--text-soft);margin-bottom:5px}
+    .cfg code,.exp code{font-family:var(--mono);font-size:.78rem;color:var(--accent-2)}
+    .ev-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .ev-tag{font-size:.74rem;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--panel-border);color:var(--text-soft)}
+    .note{font-size:.8rem;color:var(--text-mute);margin-top:12px;text-align:center}
+    /* code tabs */
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .tab{padding:7px 14px;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--text-soft);background:transparent;border:1px solid var(--panel-border)}
+    .tab:hover{color:var(--text);background:rgba(255,255,255,.05)}.tab.active{color:#fff;background:rgba(88,166,255,.18);border-color:var(--accent)}
+    .panel{border:1px solid var(--panel-border);border-radius:var(--radius);overflow:hidden;background:var(--bg-2)}
+    .panel-meta{display:flex;gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--panel-border);background:rgba(255,255,255,.02);flex-wrap:wrap}
+    .panel-tag{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:rgba(88,166,255,.1);padding:2px 8px;border-radius:6px}
+    .panel-desc{font-size:.82rem;color:var(--text-soft)}
+    pre.code{padding:16px;overflow-x:auto;font-size:.8rem;line-height:1.6;color:#cdd9ec}
+    pre.code .cmt{color:var(--text-mute)}
+    /* evidence types */
+    .ev-types{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .ev-type{padding:18px;border-radius:12px;background:var(--panel);border:1px solid var(--panel-border)}
+    .ev-type-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .ev-type h5{font-size:.9rem;font-weight:650}
+    .ev-count{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:1.1rem}
+    .ev-type p{font-size:.8rem;color:var(--text-soft)}
+    .out-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .out{padding:20px;border-radius:var(--radius);background:var(--panel);border:1px solid var(--panel-border)}
+    .out h4{font-size:.95rem;font-weight:650;margin-bottom:8px}.out p{font-size:.84rem;color:var(--text-soft)}
+    .foot{margin-top:40px;padding:20px;border:1px dashed var(--panel-border);border-radius:10px;font-size:.82rem;color:var(--text-mute)}
+    @media (max-width:860px){.stats,.company-details,.tsc-grid,.exp-grid,.ev-types,.out-cards{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner">
+    <div class="brand"><span class="brand-badge">SS</span><span>Steven Smith<small>SOC 2 Cloud Control Mapping · Demonstration</small></span></div>
+    <a class="btn" id="repo-link" href="#" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div></header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <span class="eyebrow">Work-sample template</span>
+      <h1>SOC 2 Cloud Control Mapping (AWS)</h1>
+      <p class="sub">Trust Services Criteria → AWS Implementation, Automated Testing &amp; Evidence</p>
+      <div class="divider"></div>
+    </div>
+    <div class="stats" id="stats"></div>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.8A7 7 0 1 0 4 15.7"/></svg><h2>Cloud Environment Overview</h2></div>
+      <div class="card company" id="env"></div>
+    </section>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><h2>SOC 2 Trust Services Criteria Coverage</h2></div>
+      <div class="tsc-grid" id="tsc"></div>
+    </section>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg><h2>Control Implementation Matrix</h2></div>
+      <div class="filters" id="filters"></div>
+      <div class="table-wrap"><table><thead><tr><th>Control ID</th><th>TSC</th><th>Control Name</th><th>AWS Service</th><th>Status</th><th></th></tr></thead><tbody id="ctrl-body"></tbody></table></div>
+      <p class="note">Click any row to expand implementation details, configuration steps, and evidence artifacts.</p>
+    </section>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg><h2>Automated Evidence Collection &amp; Controls Testing (Code)</h2></div>
+      <p class="intro">Screenshots don't scale. A GRC-engineering approach collects evidence and tests controls <strong>as code</strong> — repeatable, timestamped, and diff-able across audit periods. The same checks run in Bash, Python, or PowerShell, and CloudTrail becomes a queryable evidence source in Athena.</p>
+      <div class="tabs" id="ev-tabs"></div><div class="panel" id="ev-panel"></div>
+    </section>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg><h2>Evidence Collection Summary</h2></div>
+      <p class="intro">Each control includes documented evidence artifacts that would be provided to an external auditor during a SOC 2 Type II examination.</p>
+      <div class="ev-types" id="ev-types"></div>
+    </section>
+
+    <section class="block"><div class="block-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><h2>Key Learning Outcomes</h2></div>
+      <div class="out-cards" id="outcomes"></div>
+    </section>
+
+    <div class="foot" id="foot"></div>
+  </main>
+
+  <script>
+    const REPO_URL="https://github.com/SmittyStuff/soc2-cloud-control-mapping-demo";
+    document.getElementById('repo-link').href=REPO_URL;
+    const esc=s=>String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    const codeHtml=s=>esc(s).replace(/(#[^\n]*|--[^\n]*)/g,'<span class="cmt">$1</span>');
+
+    const tscCategories=[
+      ["CC1","Control Environment","The organization demonstrates a commitment to integrity and ethical values, exercises oversight, establishes structure and authority, and enforces accountability."],
+      ["CC2","Communication & Information","The organization obtains or generates relevant, quality information to support internal controls and communicates it internally and externally."],
+      ["CC3","Risk Assessment","The organization identifies and assesses risks, assesses fraud risk, and identifies significant changes that could impact internal controls."],
+      ["CC4","Monitoring Activities","The organization performs ongoing evaluations to ascertain whether controls are present and functioning."],
+      ["CC5","Control Activities","The organization selects and develops control activities that mitigate risk, deployed through policies, procedures, and technology."],
+      ["CC6","Logical & Physical Access","The organization implements logical and physical access controls, manages credentials, and restricts access based on need."],
+      ["CC7","System Operations","The organization detects and monitors security events, manages incidents, and implements recovery procedures."],
+      ["CC8","Change Management","The organization manages changes to infrastructure, data, software, and procedures to meet objectives."],
+      ["CC9","Risk Mitigation","The organization identifies, selects, and develops risk-mitigation activities including vendor management."],
+    ];
+
+    const controls=[
+      {id:"CTRL-01",tsc:"CC6.1",cat:"CC6",name:"Multi-Factor Authentication (MFA)",svc:"AWS IAM",desc:"Enforce MFA on all IAM users and the root account to prevent unauthorized access from compromised credentials.",impl:"Enabled virtual MFA (TOTP) on the root account and all IAM users. IAM policy denies actions except MFA self-management for users who haven't authenticated with MFA. Hardware MFA keys on the root account.",evidence:["IAM Credential Report (MFA enabled)","IAM policy requiring MFA","Root account MFA screenshot"],cfg:["IAM -> Users -> Security Credentials -> Assign MFA device","Create IAM policy: Condition aws:MultiFactorAuthPresent = true","Attach MFA-enforcement policy to all IAM groups","Verify: aws iam get-credential-report (mfa_active = true)"]},
+      {id:"CTRL-02",tsc:"CC6.1",cat:"CC6",name:"IAM Role-Based Access Control (RBAC)",svc:"AWS IAM",desc:"Implement least-privilege access using IAM roles, groups, and policies instead of root or shared credentials.",impl:"Three IAM groups (Administrators, Developers, ReadOnly) with graduated permissions. All users in groups — no inline user policies. IAM Access Analyzer enabled. Root access keys deleted.",evidence:["IAM group policy documents","Access Analyzer findings","Root access key status: Not active"],cfg:["Create IAM Groups with scoped policies","Assign users to groups by job function","Enable IAM Access Analyzer (account-level)","Delete root account access keys","Review: aws iam get-account-authorization-details"]},
+      {id:"CTRL-03",tsc:"CC6.7",cat:"CC6",name:"S3 Bucket Encryption (At Rest)",svc:"AWS S3 / KMS",desc:"Ensure all S3 buckets enforce server-side encryption to protect data at rest.",impl:"Default SSE-S3 (AES-256) on all buckets. Bucket policy denies PutObject lacking encryption headers. Sensitive buckets use SSE-KMS with a customer-managed CMK and key rotation.",evidence:["S3 encryption config","Bucket policy requiring encryption","KMS key rotation status","Config rule: s3-bucket-server-side-encryption-enabled"],cfg:["S3 -> Bucket -> Default Encryption -> SSE-S3","Sensitive buckets -> SSE-KMS with CMK","KMS -> Enable automatic rotation","Bucket policy: deny PutObject without encryption","Config rule: s3-bucket-server-side-encryption-enabled"]},
+      {id:"CTRL-04",tsc:"CC6.7",cat:"CC6",name:"Encryption in Transit (TLS)",svc:"S3 / ELB / CloudFront",desc:"Enforce TLS for all data in transit against interception and MITM attacks.",impl:"S3 bucket policies deny non-TLS requests via aws:SecureTransport. ALB uses HTTPS-only listeners (TLS 1.2 min). CloudFront redirects HTTP to HTTPS with TLSv1.2_2021.",evidence:["S3 SecureTransport policy","ALB listener config","CloudFront security policy","ACM certificate"],cfg:["S3 policy: Deny where aws:SecureTransport = false","ALB -> add HTTPS:443 with ACM cert","Remove/redirect HTTP:80","CloudFront -> Redirect HTTP to HTTPS","CloudFront Security Policy: TLSv1.2_2021"]},
+      {id:"CTRL-05",tsc:"CC7.1",cat:"CC7",name:"AWS CloudTrail Logging",svc:"AWS CloudTrail",desc:"Enable comprehensive API activity logging across all regions for detection, investigation, and evidence.",impl:"Org-wide multi-region trail logging management + S3 data events. Logs in a dedicated SSE-KMS bucket with 365-day retention. Log-file validation enabled.",evidence:["CloudTrail config","Log storage bucket policy","Log-file validation status","CloudWatch Logs delivery"],cfg:["CloudTrail -> Create Trail -> all regions","Enable Management + S3 Data events","Log to dedicated SSE-KMS bucket","Enable Log File Validation","Lifecycle: Glacier after 90d, expire 365d"]},
+      {id:"CTRL-06",tsc:"CC7.2",cat:"CC7",name:"CloudWatch Alarms & Monitoring",svc:"AWS CloudWatch",desc:"Real-time monitoring/alerting for security-relevant events to enable rapid detection and response.",impl:"Metric filters and alarms for unauthorized API calls, root usage, IAM/security-group/S3 policy changes, and console sign-in failures. Alarms route to an SNS topic (email + Slack).",evidence:["CloudWatch alarm configs","SNS subscriptions","Metric filter patterns","Sample notification"],cfg:["CloudWatch -> select CloudTrail log group","Metric filters for root usage, unauthorized calls, etc.","Alarms: threshold >= 1 within 5 min","SNS topic: security-alerts (email + Slack)","Trigger a test alarm to confirm delivery"]},
+      {id:"CTRL-07",tsc:"CC7.3",cat:"CC7",name:"AWS Config Compliance Rules",svc:"AWS Config",desc:"Continuous compliance monitoring with managed rules to detect drift and non-compliant resources.",impl:"Config recorder across all resource types/regions. 12 managed rules (encrypted volumes, public S3, unrestricted SGs, CloudTrail enabled, root MFA, password policy, RDS encryption). Non-compliant -> SNS.",evidence:["Config compliance dashboard","Rule definitions and results","Non-compliant notifications","Delivery channel config"],cfg:["Config -> enable recording (all resources/regions)","Add managed rules (s3-bucket-public-read-prohibited, encrypted-volumes, cloud-trail-enabled...)","Delivery channel: S3 + SNS","Review compliance dashboard","Auto-remediation via SSM for critical rules"]},
+      {id:"CTRL-08",tsc:"CC6.3",cat:"CC6",name:"VPC Network Segmentation",svc:"AWS VPC",desc:"Network-level isolation with public/private subnets and restricted security groups.",impl:"VPC with public/private subnets across two AZs. App servers in private subnets. NAT Gateway for outbound-only. Least-privilege security groups (no 0.0.0.0/0 ingress). NACLs as defense in depth.",evidence:["VPC architecture diagram","Subnet route tables","Security group rules","NACL rules","NAT Gateway config"],cfg:["VPC -> CIDR 10.0.0.0/16, public + private subnets","Internet Gateway -> public route table","NAT Gateway -> private route table","SGs: Web(443), App(8080 from Web), DB(5432 from App)","Verify: private resources not internet-reachable"]},
+      {id:"CTRL-09",tsc:"CC7.5",cat:"CC7",name:"Automated Backups (RDS & S3)",svc:"AWS RDS / S3",desc:"Automated backups with point-in-time recovery for availability and continuity.",impl:"RDS automated backups (30-day retention) + PITR, encrypted with KMS CMK. S3 versioning with lifecycle to Glacier after 90 days. Cross-region replication for critical data to us-west-2.",evidence:["RDS backup settings","S3 versioning status","Lifecycle config","Cross-region replication rules","Restoration test results"],cfg:["RDS -> Backup Retention 30 days + CMK encryption","S3 -> enable Versioning","Lifecycle: noncurrent -> Glacier 90d, delete 365d","S3 Replication -> us-west-2","Test: RDS point-in-time restore + integrity check"]},
+      {id:"CTRL-10",tsc:"CC8.1",cat:"CC8",name:"Infrastructure as Code (CloudFormation)",svc:"AWS CloudFormation",desc:"Version-controlled templates for consistent, auditable, repeatable deployments.",impl:"All resources in CloudFormation YAML in Git. Changes require PR review + approval. Drift detection enabled. Stack policies prevent accidental deletion of production databases.",evidence:["CFN templates in Git","PR history with approvals","Drift detection results","Stack policy","CI/CD pipeline config"],cfg:["Define all resources in CFN YAML","Store in Git with branch protection (PR approval)","Enable Drift Detection (weekly)","Stack Policy: deny Update:Delete on prod DB","CI/CD: validate -> change set -> deploy"]},
+      {id:"CTRL-11",tsc:"CC4.1",cat:"CC4",name:"AWS Security Hub",svc:"AWS Security Hub",desc:"Centralize security findings across services for a unified compliance/security posture view.",impl:"Security Hub with FSBP + CIS AWS Foundations. Integrated GuardDuty, Inspector, Access Analyzer, and Config. Custom insights for SOC 2-relevant findings. Weekly compliance-score reports.",evidence:["Security Hub dashboard/score","Enabled standards + integrations","Custom insight configs","Weekly report sample"],cfg:["Security Hub -> enable FSBP + CIS Benchmark","Enable integrations (GuardDuty, Inspector, Access Analyzer, Config)","Custom insights for SOC 2 categories","Export findings to S3","Weekly summary via EventBridge -> Lambda"]},
+      {id:"CTRL-12",tsc:"CC3.2",cat:"CC3",name:"GuardDuty Threat Detection",svc:"AWS GuardDuty",desc:"Continuous threat detection for malicious activity and unauthorized behavior.",impl:"GuardDuty across all regions with all sources (VPC Flow, DNS, CloudTrail mgmt + S3). High/Critical findings notify via CloudWatch Events -> SNS. Trusted-IP list for office IPs. Findings in Security Hub.",evidence:["GuardDuty enablement (all regions)","Detector sources config","CloudWatch Event rule (severity >= 7)","SNS config","Sample finding"],cfg:["GuardDuty -> enable all data sources","Enable in all regions (create-detector)","Trusted IP list for office/VPN CIDRs","CloudWatch Events -> severity >= 7 -> SNS","Verify integration in Security Hub"]},
+      {id:"CTRL-13",tsc:"CC6.2",cat:"CC6",name:"IAM Password & Session Policy",svc:"AWS IAM",desc:"Strong password requirements and session controls to reduce credential attack surface.",impl:"Password policy: min 14 chars, complexity, no reuse (24), expire 90 days. Console max session 1 hour. Idle timeout via SCP.",evidence:["Password policy screenshot","SCP for session controls","Config rule: iam-password-policy compliant"],cfg:["IAM -> Password Policy: 14 chars + complexity","Reuse prevention: 24","Expiration: 90 days","SCP: MaxSessionDuration 3600s","Config rule: iam-password-policy"]},
+      {id:"CTRL-14",tsc:"CC5.2",cat:"CC5",name:"S3 Block Public Access",svc:"AWS S3",desc:"Prevent accidental public exposure via account-level public-access blocks.",impl:"Account-level S3 Block Public Access — all four settings on. Config rule monitors bucket overrides. SCP prevents any principal from disabling the account block.",evidence:["Account-level BPA settings","Config rule: s3-account-level-public-access-blocks","SCP preventing modification"],cfg:["S3 -> Account Settings -> Block Public Access (all four)","Config rule: s3-account-level-public-access-blocks-periodic","SCP: Deny s3:PutAccountPublicAccessBlock","Verify: creating a public bucket fails","Review: aws s3control get-public-access-block"]},
+    ];
+
+    const evidenceTypes=[
+      ["Configuration Screenshots",14,"Console screenshots showing enabled security features, policy configurations, and service settings"],
+      ["Policy Documents (JSON/YAML)",10,"IAM policies, S3 bucket policies, SCPs, and CloudFormation templates as machine-readable evidence"],
+      ["Compliance Reports",6,"AWS Config dashboards, Security Hub scores, GuardDuty findings, and IAM credential reports"],
+      ["Automated Scan Results",4,"AWS Config rule evaluations, Access Analyzer findings, and Security Hub standard assessments"],
+      ["Architecture Diagrams",2,"VPC network architecture and data-flow diagrams showing security boundaries and controls"],
+      ["Test Results",3,"Backup restoration tests, access-denial verification, and encryption validation results"],
+    ];
+
+    const evidenceCode=[
+      {key:"bash",title:"Bash (AWS CLI)",lang:"bash",desc:"Pull point-in-time evidence artifacts for multiple controls into a timestamped folder.",code:`#!/usr/bin/env bash
+# Collect SOC 2 evidence artifacts into a timestamped folder.
+set -euo pipefail
+OUT="soc2-evidence/$(date +%Y%m%d_%H%M%S)"; mkdir -p "$OUT"
+ACCT=$(aws sts get-caller-identity --query Account --output text)
+
+# CC6.1 - MFA on all IAM users (credential report)
+aws iam generate-credential-report >/dev/null
+aws iam get-credential-report --query Content --output text \\
+  | base64 -d > "$OUT/iam_credential_report.csv"
+
+# CC7.3 - AWS Config compliance summary
+aws configservice describe-compliance-by-config-rule \\
+  --query 'ComplianceByConfigRules[].{Rule:ConfigRuleName,Status:Compliance.ComplianceType}' \\
+  --output json > "$OUT/config_compliance.json"
+
+# CC6.7 - S3 account-level public access block
+aws s3control get-public-access-block --account-id "$ACCT" \\
+  > "$OUT/s3_public_access_block.json"
+
+# CC7.1 - CloudTrail multi-region + log-file validation
+aws cloudtrail describe-trails \\
+  --query 'trailList[].{Name:Name,MultiRegion:IsMultiRegionTrail,Validation:LogFileValidationEnabled}' \\
+  --output json > "$OUT/cloudtrail_status.json"
+
+echo "Evidence written to $OUT"`},
+      {key:"boto3",title:"Python (boto3)",lang:"python",desc:"A control-test harness that asserts each control programmatically and emits pass/fail evidence.",code:`import boto3, csv, io, json, datetime
+
+def mfa_on_all_users():
+    iam = boto3.client("iam")
+    iam.generate_credential_report()
+    rows = csv.DictReader(io.StringIO(
+        iam.get_credential_report()["Content"].decode()))
+    gaps = [r["user"] for r in rows
+            if r["password_enabled"] == "true" and r["mfa_active"] == "false"]
+    return {"control": "CC6.1 MFA", "pass": not gaps, "exceptions": gaps}
+
+def s3_encryption_enforced():
+    s3, gaps = boto3.client("s3"), []
+    for b in s3.list_buckets()["Buckets"]:
+        try:
+            s3.get_bucket_encryption(Bucket=b["Name"])
+        except s3.exceptions.ClientError:
+            gaps.append(b["Name"])            # no default encryption
+    return {"control": "CC6.7 S3 encryption", "pass": not gaps, "exceptions": gaps}
+
+def cloudtrail_multiregion():
+    trails = boto3.client("cloudtrail").describe_trails()["trailList"]
+    ok = any(t["IsMultiRegionTrail"] and t["LogFileValidationEnabled"]
+             for t in trails)
+    return {"control": "CC7.1 CloudTrail", "pass": ok, "exceptions": []}
+
+checks = [mfa_on_all_users(), s3_encryption_enforced(), cloudtrail_multiregion()]
+evidence = {
+    "generated":  datetime.datetime.utcnow().isoformat() + "Z",
+    "account":    boto3.client("sts").get_caller_identity()["Account"],
+    "results":    checks,
+    "pass_rate":  round(100 * sum(c["pass"] for c in checks) / len(checks)),
+}
+json.dump(evidence, open("soc2_control_tests.json", "w"), indent=2)
+print(f"{evidence['pass_rate']}% of tested controls passing")`},
+      {key:"powershell",title:"PowerShell",lang:"powershell",desc:"Windows-native evidence collection with AWS Tools for PowerShell.",code:`# SOC 2 evidence collection with AWS Tools for PowerShell
+$Out = "soc2-evidence/{0:yyyyMMdd_HHmmss}" -f (Get-Date)
+New-Item -ItemType Directory -Force -Path $Out | Out-Null
+
+# CC6.2 - IAM account password policy
+Get-IAMAccountPasswordPolicy | ConvertTo-Json |
+    Set-Content "$Out/password_policy.json"
+
+# CC7.3 - AWS Config non-compliant rules
+Get-CFGComplianceByConfigRule |
+    Where-Object { $_.Compliance.ComplianceType -eq 'NON_COMPLIANT' } |
+    Select-Object ConfigRuleName |
+    Export-Csv "$Out/config_noncompliant.csv" -NoTypeInformation
+
+# CC6.1 - IAM users with no MFA device
+Get-IAMUsers | Where-Object { -not (Get-IAMMFADevice -UserName $_.UserName) } |
+    Select-Object UserName |
+    Export-Csv "$Out/users_without_mfa.csv" -NoTypeInformation
+
+Write-Host "Evidence written to $Out"`},
+      {key:"athena",title:"Athena SQL",lang:"sql",desc:"Query CloudTrail logs in Athena - the data-analytics side of evidence.",code:`-- CC6.1 / CC7.2 - root-account usage in the last 90 days
+SELECT eventtime, eventname, sourceipaddress, awsregion
+FROM   cloudtrail_logs
+WHERE  useridentity.type = 'Root'
+  AND  eventtime > date_add('day', -90, now())
+ORDER  BY eventtime DESC;
+
+-- CC7.2 - access-denied API calls, ranked by principal
+SELECT useridentity.arn        AS principal,
+       errorcode,
+       count(*)                AS attempts
+FROM   cloudtrail_logs
+WHERE  errorcode IN ('AccessDenied', 'UnauthorizedOperation')
+  AND  eventtime > date_add('day', -30, now())
+GROUP  BY useridentity.arn, errorcode
+ORDER  BY attempts DESC
+LIMIT  25;
+
+-- CC6.1 - console sign-ins WITHOUT MFA (exception evidence)
+SELECT eventtime, useridentity.username, sourceipaddress
+FROM   cloudtrail_logs
+WHERE  eventname = 'ConsoleLogin'
+  AND  json_extract_scalar(additionaleventdata, '$.MFAUsed') = 'No';`},
+    ];
+
+    const outcomes=[
+      ["Technical Control Validation","Configuring and validating security controls in a live AWS environment — hands-on implementation that demonstrates technical competence to auditors and engineers."],
+      ["Cloud Security Architecture","Understanding how AWS security services work together: IAM, KMS, CloudTrail, Config, VPC, and Security Hub for centralized visibility."],
+      ["SOC 2 Control Alignment","Mapping technical implementations to specific SOC 2 Trust Services Criteria (CC1-CC9) and producing the evidence auditors need."],
+      ["Audit Evidence Collection","Gathering, organizing, and documenting evidence artifacts in a structured format that supports SOC 2 Type II examination procedures."],
+      ["Infrastructure as Code for Compliance","Using CloudFormation and version control for auditable, repeatable, change-controlled deployments."],
+      ["Evidence Collection as Code","Automating evidence and control testing with the AWS CLI, boto3, and PowerShell — repeatable, timestamped, machine-readable artifacts over one-off screenshots."],
+      ["Security Log Analytics (Athena SQL)","Querying CloudTrail in Athena for control evidence at scale — root usage, access-denied patterns, non-MFA logins."],
+      ["Continuous Compliance Monitoring","Automated monitoring via AWS Config rules, Security Hub standards, and GuardDuty to maintain posture between audit periods."],
+    ];
+
+    const env={name:"AWS SOC 2 Compliance Lab",tag:"Illustrative production environment for control validation",details:[["Platform","Amazon Web Services (us-east-1)"],["Account Type","AWS Organizations — dedicated compliance testing account"],["Services in Scope","IAM, S3, KMS, CloudTrail, CloudWatch, Config, VPC, RDS, Security Hub, GuardDuty, CloudFormation"],["Framework","SOC 2 Type II — Trust Services Criteria (CC1-CC9)"],["Approach","Configure AWS security services, validate posture, collect evidence artifacts for each control"]],services:["IAM","S3","KMS","CloudTrail","CloudWatch","Config","VPC","RDS","Security Hub","GuardDuty","CloudFormation"]};
+
+    // ── renders ──
+    const coveredCats=new Set(controls.map(c=>c.cat));
+    document.getElementById('stats').innerHTML=[
+      {n:controls.length,l:'Controls Mapped'},{n:coveredCats.size+'/'+tscCategories.length,l:'TSC Categories Covered'},{n:'100%',l:'Implementation Rate'},{n:'AWS',l:'Cloud Platform',a:true}
+    ].map(s=>`<div class="stat"><span class="num${s.a?' accent':''}">${s.n}</span><span class="lbl">${s.l}</span></div>`).join('');
+
+    document.getElementById('env').innerHTML=`<div class="company-head"><div class="company-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.8A7 7 0 1 0 4 15.7"/></svg></div><div><h3>${esc(env.name)}</h3><p class="company-tag">${esc(env.tag)}</p></div></div><div class="company-details">${env.details.map(([k,v])=>`<div class="di"><span class="dk">${esc(k)}</span><span>${esc(v)}</span></div>`).join('')}</div><div class="svc-strip">${env.services.map(s=>`<span class="svc-badge">${s}</span>`).join('')}</div>`;
+
+    const covMap={};controls.forEach(c=>{(covMap[c.cat]=covMap[c.cat]||[]).push(c.id);});
+    document.getElementById('tsc').innerHTML=tscCategories.map(([id,name,desc])=>{const ids=covMap[id]||[];return `<div class="tsc-card ${ids.length?'':'uncov'}"><div class="tsc-h"><span class="tsc-id">${id}</span><span class="tsc-count">${ids.length} control${ids.length!==1?'s':''}</span></div><h5>${esc(name)}</h5><p>${esc(desc)}</p>${ids.length?`<div class="tsc-ctrls">${ids.map(x=>`<span class="tsc-ctrl">${x}</span>`).join('')}</div>`:''}</div>`;}).join('');
+
+    // control matrix
+    let tscF='all';
+    const filtersEl=document.getElementById('filters'),cb=document.getElementById('ctrl-body');
+    const catList=tscCategories.map(c=>c[0]).filter(id=>covMap[id]);
+    function renderFilters(){filtersEl.innerHTML=`<span class="fl">TSC Category:</span>`+[['all','All',controls.length],...catList.map(id=>[id,id,covMap[id].length])].map(([v,l,n])=>`<button class="fbtn ${tscF===v?'active':''}" data-t="${v}">${l} (${n})</button>`).join('');}
+    function renderCtrls(){
+      const rows=tscF==='all'?controls:controls.filter(c=>c.cat===tscF);
+      cb.innerHTML=rows.map(c=>`<tr class="row-main" data-id="${c.id}"><td class="cid">${c.id}</td><td><span class="tsc-badge">${c.tsc}</span></td><td class="cname">${esc(c.name)}</td><td class="svc">${esc(c.svc)}</td><td><span class="st">Implemented</span></td><td class="exp-cell">▾</td></tr>
+      <tr class="detail-row" data-d="${c.id}" style="display:none"><td colspan="6"><div class="exp">
+        <div class="exp-grid"><div><b>Description</b><p>${esc(c.desc)}</p></div><div><b>Implementation Details</b><p>${esc(c.impl)}</p></div></div>
+        <div><b>Configuration Steps</b><ol class="cfg">${c.cfg.map(s=>`<li>${esc(s)}</li>`).join('')}</ol></div>
+        <div><b>Evidence / Artifacts</b><div class="ev-tags">${c.evidence.map(e=>`<span class="ev-tag">📷 ${esc(e)}</span>`).join('')}</div></div>
+      </div></td></tr>`).join('');
+    }
+    filtersEl.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){tscF=b.dataset.t;renderFilters();renderCtrls();}});
+    cb.addEventListener('click',e=>{const row=e.target.closest('.row-main');if(!row)return;const d=cb.querySelector(`[data-d="${row.dataset.id}"]`);if(d)d.style.display=d.style.display==='none'?'table-row':'none';});
+    renderFilters();renderCtrls();
+
+    // evidence code tabs
+    let ei=0;const et=document.getElementById('ev-tabs'),ep=document.getElementById('ev-panel');
+    function renderEv(){et.innerHTML=evidenceCode.map((c,i)=>`<button class="tab ${i===ei?'active':''}" data-i="${i}">${esc(c.title)}</button>`).join('');const c=evidenceCode[ei];ep.innerHTML=`<div class="panel-meta"><span class="panel-tag">${c.lang}</span><span class="panel-desc">${esc(c.desc)}</span></div><pre class="code">${codeHtml(c.code)}</pre>`;}
+    et.addEventListener('click',e=>{const b=e.target.closest('[data-i]');if(b){ei=+b.dataset.i;renderEv();}});renderEv();
+
+    document.getElementById('ev-types').innerHTML=evidenceTypes.map(([t,n,d])=>`<div class="ev-type"><div class="ev-type-h"><h5>${esc(t)}</h5><span class="ev-count">${n}</span></div><p>${esc(d)}</p></div>`).join('');
+    document.getElementById('outcomes').innerHTML=outcomes.map(([t,d])=>`<div class="out"><h4>${esc(t)}</h4><p>${esc(d)}</p></div>`).join('');
+    document.getElementById('foot').innerHTML=`This is an illustrative SOC 2 control mapping provided as a reusable work-sample template; the environment and evidence are fictional. SOC 2 criteria from <a href="https://www.aicpa.org/resources/landing/system-and-organization-controls-soc-suite-of-services" target="_blank" rel="noopener noreferrer">AICPA Trust Services Criteria</a>. AWS configs based on the <a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html" target="_blank" rel="noopener noreferrer">AWS Well-Architected Security Pillar</a>; log analytics use <a href="https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html" target="_blank" rel="noopener noreferrer">Athena over CloudTrail</a>.`;
+  </script>
+</body>
+</html>
