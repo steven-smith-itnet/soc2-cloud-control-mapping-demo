@@ -18,7 +18,7 @@ Criteria from the **AICPA Trust Services Criteria**; configurations follow the
 
 ## 🔗 Live demo
 
-**https://itnet-steven-smith.github.io/soc2-cloud-control-mapping-demo/**
+**https://steven-smith-itnet.github.io/soc2-cloud-control-mapping-demo/**
 
 ## About
 
