@@ -1,0 +1,120 @@
+{
+  "schema_version": "2.0.0",
+  "scenario": "Northstar Workspace; synthetic offline subset",
+  "approved_by": "Illustrative assurance owner",
+  "parameters": {
+    "freshness_hours": 24,
+    "leaver_sla_hours": 1,
+    "rto_hours": 4,
+    "rpo_hours": 1
+  },
+  "expected": [
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-primary",
+      "applicable": true
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-export",
+      "applicable": true
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-archive",
+      "applicable": true
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-new",
+      "applicable": true
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-evidence",
+      "applicable": true
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "public-docs",
+      "applicable": false,
+      "exclusion_reason": "Approved public documentation delivery; no customer content",
+      "approved_by": "Storage owner"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-01",
+      "applicable": true
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-02",
+      "applicable": true
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-03",
+      "applicable": true
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-04",
+      "applicable": true
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-05",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-01",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-02",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-03",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-04",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-05",
+      "applicable": true
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-06",
+      "applicable": true
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-01",
+      "applicable": true
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-02",
+      "applicable": true
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-03",
+      "applicable": true
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-04",
+      "applicable": true
+    }
+  ]
+}

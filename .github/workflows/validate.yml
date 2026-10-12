@@ -1,0 +1,21 @@
+name: Validate learning project
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  controls-and-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test controls and collection failure paths
+        run: python3 -m unittest discover -s tests -v
+      - name: Reproduce checked-in synthetic baseline
+        run: |
+          python3 scripts/evaluate.py --as-of 2026-09-30T15:00:00Z --out evidence/local-run-ci
+          diff evidence/examples/baseline/results.json evidence/local-run-ci/results.json
+          python3 scripts/verify_evidence.py evidence/examples/baseline

@@ -1,0 +1,1710 @@
+{
+  "version": "2.0.0",
+  "reviewedAt": "2026-10-03",
+  "title": "SOC 2 on AWS",
+  "subtitle": "From service commitments to tested controls and defensible evidence.",
+  "label": "A complete learning and assurance-engineering case study",
+  "repo": "https://github.com/steven-smith-itnet/soc2-cloud-control-mapping-demo",
+  "disclosure": "Fictional SaaS service, synthetic records and illustrative management workpapers. No real customer data, production AWS deployment, CPA examination or issued SOC 2 report is represented.",
+  "controls": [
+    {
+      "id": "GOV-01",
+      "title": "Accountability and independent oversight",
+      "domain": "Governance",
+      "criteria": [
+        "CC1.1",
+        "CC1.2",
+        "CC1.3",
+        "CC1.5"
+      ],
+      "owner": "Executive sponsor",
+      "frequency": "Quarterly",
+      "population": "Service leadership, control owners, oversight meetings",
+      "risk": "Controls can be bypassed when responsibilities and escalation rights are unclear.",
+      "implementation": "Approve an ethics policy, accountability matrix, delegated authority and independent oversight charter. Assign a primary and backup for every control.",
+      "designTest": "Inspect approval authority and conflicts between operator, reviewer and risk acceptor.",
+      "operatingTest": "Inspect each quarterly oversight packet and trace overdue issues to decisions and follow-up.",
+      "evidence": [
+        "Approved charter",
+        "RACI version history",
+        "Meeting minutes",
+        "Action register"
+      ],
+      "limits": "AWS account ownership does not establish organizational accountability.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "GOV-02",
+      "title": "Workforce competence and security education",
+      "domain": "Governance",
+      "criteria": [
+        "CC1.4",
+        "CC2.2"
+      ],
+      "owner": "People operations",
+      "frequency": "At hire and annually",
+      "population": "Employees and contractors with scoped system access",
+      "risk": "Untrained personnel mishandle customer data or escalate incidents too late.",
+      "implementation": "Require role-specific onboarding, acceptable-use acknowledgement and security training before production access. Track contractors as well as employees.",
+      "designTest": "Confirm curriculum addresses data handling, reporting, privileged work and access termination.",
+      "operatingTest": "Reconcile HR roster to completion records. Inspect overdue training and approved follow-up for every missed deadline.",
+      "evidence": [
+        "HR roster",
+        "Training export",
+        "Acknowledgements",
+        "Follow-up tickets"
+      ],
+      "limits": "A completion certificate does not prove a person can perform an operational procedure.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "GOV-03",
+      "title": "Commitments and customer communication",
+      "domain": "Governance",
+      "criteria": [
+        "CC2.1",
+        "CC2.2",
+        "CC2.3"
+      ],
+      "owner": "Service owner",
+      "frequency": "Quarterly and material change",
+      "population": "Contracts, security promises, SLAs, notices and support channels",
+      "risk": "The system fails promises that engineering never received.",
+      "implementation": "Maintain a commitments register linking customer promises to controls, metrics and notification procedures. Approve changes jointly with legal and engineering.",
+      "designTest": "Trace each promise to a measurable system requirement and named owner.",
+      "operatingTest": "Inspect contract changes and a notification exercise; verify owners received changes before release.",
+      "evidence": [
+        "Commitments register",
+        "Approved notices",
+        "Communication records"
+      ],
+      "limits": "A marketing availability claim is not evidence of delivered availability.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "RSK-01",
+      "title": "Risk assessment with change and fraud analysis",
+      "domain": "Governance",
+      "criteria": [
+        "CC3.1",
+        "CC3.2",
+        "CC3.3",
+        "CC3.4",
+        "CC9.1"
+      ],
+      "owner": "Risk owner",
+      "frequency": "Annually and material change",
+      "population": "Service assets, threat scenarios, suppliers and planned changes",
+      "risk": "Risk treatment overlooks insider misuse, dependency failures or new data flows.",
+      "implementation": "Define objectives and risk thresholds. Assess inherent and residual risk, including fraud and tenant isolation. Reassess after expansion, acquisition or incidents.",
+      "designTest": "Inspect scoring rules and scenario coverage; trace high risks to treatment owners.",
+      "operatingTest": "Inspect the approved assessment, change-triggered reassessments and treatment follow-through.",
+      "evidence": [
+        "Risk register",
+        "Threat model",
+        "Treatment approvals",
+        "Change assessments"
+      ],
+      "limits": "Risk scoring is a prioritization convention, not a calculated probability of loss.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "MON-01",
+      "title": "Independent controls evaluation and issue escalation",
+      "domain": "Governance",
+      "criteria": [
+        "CC4.1",
+        "CC4.2"
+      ],
+      "owner": "Assurance lead",
+      "frequency": "Monthly",
+      "population": "All scoped controls and outstanding findings",
+      "risk": "The dashboard appears healthy while control evidence is absent or unreliable.",
+      "implementation": "Review control design, test results, unknowns and aging issues independently of operation. Escalate repeated deficiencies to oversight.",
+      "designTest": "Confirm review criteria, escalation triggers and reviewer independence.",
+      "operatingTest": "Trace monthly review decisions to evidence, tickets and independently verified closure.",
+      "evidence": [
+        "Review packs",
+        "Evaluation workpapers",
+        "Escalations",
+        "Retest records"
+      ],
+      "limits": "A native compliance score excludes human controls and unrecorded resources.",
+      "source": "config",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "GOV-04",
+      "title": "Policies, procedures and control versioning",
+      "domain": "Governance",
+      "criteria": [
+        "CC5.1",
+        "CC5.2",
+        "CC5.3"
+      ],
+      "owner": "Policy owner",
+      "frequency": "Annual review and every change",
+      "population": "Policies, operating runbooks and automated test definitions",
+      "risk": "A documented objective has no executable procedure or deployed enforcement.",
+      "implementation": "Version policy requirements, operating procedures and test parameters together. Approve substantive changes and communicate effective dates.",
+      "designTest": "Walk a requirement from policy to operator instructions and technology enforcement.",
+      "operatingTest": "Inspect policy reviews and change records; verify the effective version matches tested operation.",
+      "evidence": [
+        "Policy history",
+        "Procedure approvals",
+        "Control specification",
+        "Release history"
+      ],
+      "limits": "Publishing a policy alone cannot demonstrate that it operated.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "IAM-01",
+      "title": "Federated identity and MFA enforcement",
+      "domain": "Identity",
+      "criteria": [
+        "CC6.1",
+        "CC6.2"
+      ],
+      "owner": "Identity engineering",
+      "frequency": "Continuous; quarterly review",
+      "population": "Workforce identities, Identity Center assignments and emergency IAM users",
+      "risk": "Stolen credentials allow privileged access.",
+      "implementation": "Use an identity provider with MFA and conditional access, IAM Identity Center permission sets and short-lived role sessions. Maintain separately monitored emergency access.",
+      "designTest": "Review IdP enforcement, bypass paths, permission sets and session duration. Test denied and allowed logins in a sandbox.",
+      "operatingTest": "Correlate sign-in records, role assumptions and exception approvals across the period.",
+      "evidence": [
+        "IdP policy export",
+        "Identity Center assignments",
+        "Sign-in logs",
+        "Break-glass drills"
+      ],
+      "limits": "IAM credential reports omit federated users. A missing aws:MultiFactorAuthPresent value does not establish missing MFA for federation.",
+      "source": "mfa",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "IAM-02",
+      "title": "Least privilege and access recertification",
+      "domain": "Identity",
+      "criteria": [
+        "CC6.1",
+        "CC6.3"
+      ],
+      "owner": "System owner",
+      "frequency": "Quarterly and role change",
+      "population": "Human assignments, service roles, trust policies and resource grants",
+      "risk": "Accumulated privilege enables data theft or unauthorized changes.",
+      "implementation": "Grant job-based permission sets and narrow workload roles. Review identity policies together with resource policies, trust, session policies, boundaries and organization restrictions.",
+      "designTest": "Test representative effective-access paths including cross-account assumptions and explicit denies.",
+      "operatingTest": "Reconcile assignments to HR and role inventory. Inspect each review decision and evidence that revoked grants were removed.",
+      "evidence": [
+        "Assignment inventory",
+        "Reviewer decisions",
+        "Policy simulation context",
+        "Removal tickets"
+      ],
+      "limits": "SCPs and permission boundaries limit grants; neither grants permissions. Policy simulations need context and do not prove every runtime path.",
+      "source": "iamlogic",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "IAM-03",
+      "title": "Privileged and emergency access",
+      "domain": "Identity",
+      "criteria": [
+        "CC6.2",
+        "CC6.3"
+      ],
+      "owner": "Security operations",
+      "frequency": "Per use; monthly review",
+      "population": "Root principals, privileged sessions and emergency credentials",
+      "risk": "Unreviewed root use bypasses routine separation of duties.",
+      "implementation": "Remove root access keys, protect emergency identities with MFA, prohibit routine root work, require approval and alert on privileged use. Evaluate centralized root management where appropriate.",
+      "designTest": "Inspect custody, approval, monitoring and emergency recovery procedures.",
+      "operatingTest": "Trace every emergency use to justification, approval, session logs and after-action review.",
+      "evidence": [
+        "Root credential status",
+        "Privileged-use logs",
+        "Approvals",
+        "Drill results"
+      ],
+      "limits": "A root MFA screenshot cannot demonstrate that privileged use was reviewed.",
+      "source": "mfa",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "IAM-04",
+      "title": "Leaver access removal across every access path",
+      "domain": "Identity",
+      "criteria": [
+        "CC6.2",
+        "CC6.3"
+      ],
+      "owner": "Identity operations",
+      "frequency": "Per termination; daily reconciliation",
+      "population": "HR terminations joined to IdP, cloud assignments, IAM credentials and active sessions",
+      "risk": "A departed worker retains usable access.",
+      "implementation": "Set a one-hour lab SLA for all access paths. Disable IdP login, remove assignments, address active role sessions and native keys, and record final effective-access removal time.",
+      "designTest": "Inspect joins, immutable HR identifiers, time zones, retry handling and orphan-account detection.",
+      "operatingTest": "Evaluate all terminations against access-path exports. Investigate missing joins and late removal; independently retest each path.",
+      "evidence": [
+        "HR events",
+        "Assignment removal",
+        "Session/key invalidation records",
+        "Reconciliation report"
+      ],
+      "limits": "The executable check evaluates supplied final-removal timestamps. It does not query HR or revoke access. Identity Center logout alone does not end existing IAM role sessions.",
+      "source": "sessions",
+      "automation": "Executable offline test",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "IAM-05",
+      "title": "Workload identity and secret lifecycle",
+      "domain": "Identity",
+      "criteria": [
+        "CC6.1",
+        "CC6.3",
+        "CC6.6"
+      ],
+      "owner": "Platform engineering",
+      "frequency": "Continuous; quarterly review",
+      "population": "Runtime roles, CI identities, secrets and trust relationships",
+      "risk": "Long-lived build secrets or broad trust let attackers assume production roles.",
+      "implementation": "Use ECS task roles and OIDC federation for CI. Constrain audience, repository and environment subjects. Store secrets in Secrets Manager and verify rotation consumers.",
+      "designTest": "Review role trust, secrets access, rotation design and prod/nonprod isolation.",
+      "operatingTest": "Inspect role use, denied federation tests and successful rotation exercises without exposing secret values.",
+      "evidence": [
+        "Trust policies",
+        "OIDC claims",
+        "Rotation metadata",
+        "Consumer validation"
+      ],
+      "limits": "No static access key does not imply a narrowly scoped role.",
+      "source": "oidc",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "DAT-01",
+      "title": "S3 public-access prevention",
+      "domain": "Data protection",
+      "criteria": [
+        "CC6.1",
+        "CC6.6",
+        "C1.1"
+      ],
+      "owner": "Storage owner",
+      "frequency": "Continuous; daily evaluation",
+      "population": "Customer-data buckets and documented public delivery buckets",
+      "risk": "Public access exposes customer content.",
+      "implementation": "Apply account and bucket public-access blocks, minimize resource policies, disable unnecessary ACLs and review access points and cross-account grants. Keep approved public delivery separate.",
+      "designTest": "Inspect effective policies, account settings and alternate access paths against classification.",
+      "operatingTest": "Reconcile bucket inventory to current Config public-read results, investigate every exception and test external access safely.",
+      "evidence": [
+        "Bucket inventory",
+        "Config evaluations",
+        "Public-access settings",
+        "Policy review"
+      ],
+      "limits": "The live collector supports public-read prevention only. It does not test public write, tenant authorization or every access point.",
+      "source": "publicrule",
+      "automation": "Executable Config evidence test",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "DAT-02",
+      "title": "Encryption and key governance",
+      "domain": "Data protection",
+      "criteria": [
+        "CC6.1",
+        "CC6.7",
+        "C1.1"
+      ],
+      "owner": "Key custodian",
+      "frequency": "Continuous; quarterly review",
+      "population": "S3 objects, RDS storage, EBS volumes and relevant KMS keys",
+      "risk": "Sensitive data or cryptographic keys become accessible to unauthorized parties.",
+      "implementation": "Use customer-managed KMS keys where the data policy requires them. Review key policies, grants, deletion controls and rotation eligibility. Check existing objects as well as bucket defaults.",
+      "designTest": "Verify key access separation, service integration and rotation strategy for the specific key type.",
+      "operatingTest": "Inspect key changes and denied-use tests; reconcile object inventory to required encryption and key IDs.",
+      "evidence": [
+        "Encryption metadata",
+        "KMS policies and grants",
+        "Key change logs",
+        "Object inventory"
+      ],
+      "limits": "S3 encrypts new uploads by default. Bucket default SSE-KMS does not re-encrypt old objects; encryption headers and service delivery paths require deliberate design.",
+      "source": "s3encrypt",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "DAT-03",
+      "title": "Transport protection and network boundaries",
+      "domain": "Data protection",
+      "criteria": [
+        "CC6.6",
+        "CC6.7"
+      ],
+      "owner": "Network engineering",
+      "frequency": "Continuous; monthly review",
+      "population": "Public endpoints, VPC paths, database connections and external transfers",
+      "risk": "Traffic is intercepted or untrusted networks reach sensitive services.",
+      "implementation": "Require HTTPS at public ingress, private application/database subnets, restrictive security groups and scoped endpoints. Enforce database TLS and controlled egress.",
+      "designTest": "Review path diagrams, endpoint policies, listener settings and TLS clients.",
+      "operatingTest": "Test blocked paths and plaintext requests; inspect rule changes and certificate renewal evidence.",
+      "evidence": [
+        "Network diagrams",
+        "Listener/SG exports",
+        "Connectivity tests",
+        "TLS test results"
+      ],
+      "limits": "A private subnet does not by itself prevent exfiltration or enforce tenant isolation.",
+      "source": "sra",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "DAT-04",
+      "title": "Confidential data retention and disposal",
+      "domain": "Data protection",
+      "criteria": [
+        "CC6.5",
+        "CC6.7",
+        "C1.1",
+        "C1.2"
+      ],
+      "owner": "Data owner",
+      "frequency": "Monthly and on deletion request",
+      "population": "Customer content, replicas, logs, exports, backups and keys",
+      "risk": "Data persists beyond agreed retention or disposal destroys required evidence.",
+      "implementation": "Maintain classification and retention rules. Track deletion through replicas and backup expiration, apply legal-hold exceptions and document custody for physical disposal inherited from AWS.",
+      "designTest": "Inspect deletion paths, retention conflicts and customer commitments.",
+      "operatingTest": "Trace selected deletion events to application records, storage changes and backup expiration; verify legal holds are authorized.",
+      "evidence": [
+        "Classification register",
+        "Deletion workflow",
+        "Lifecycle configs",
+        "Disposal verification"
+      ],
+      "limits": "Deleting a live object does not delete older versions, locked evidence or backup copies.",
+      "source": "objectlock",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "APP-01",
+      "title": "Tenant isolation and data-flow authorization",
+      "domain": "Application",
+      "criteria": [
+        "CC6.1",
+        "CC6.6",
+        "CC6.7"
+      ],
+      "owner": "Application security",
+      "frequency": "Every release and quarterly",
+      "population": "API routes, worker jobs, signed URLs and customer-data paths",
+      "risk": "A valid customer reads or writes another tenant’s content.",
+      "implementation": "Derive tenant identity server-side, scope every read/write, separate worker privileges and bind signed URLs to authorized objects. Document trust boundaries and data sinks.",
+      "designTest": "Inspect authorization design across ingress, application, storage, queues and export paths.",
+      "operatingTest": "Run cross-tenant positive/negative tests and trace a canary through application logs, CloudTrail data events and the evidence store.",
+      "evidence": [
+        "Data-flow diagram",
+        "Authorization tests",
+        "Canary trace",
+        "Remediation verification"
+      ],
+      "limits": "IAM encryption controls cannot prove application-layer tenant isolation.",
+      "source": "dataevents",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "APP-02",
+      "title": "Controlled uploads and data ingress",
+      "domain": "Application",
+      "criteria": [
+        "CC6.8",
+        "CC7.1"
+      ],
+      "owner": "Application owner",
+      "frequency": "Per upload and release",
+      "population": "Untrusted files, dependencies, containers and import jobs",
+      "risk": "Malicious content or unsafe components execute in the service.",
+      "implementation": "Validate types and size, scan untrusted content, quarantine failures and restrict execution permissions. Apply dependency and container scanning before promotion.",
+      "designTest": "Inspect bypass handling and quarantine isolation.",
+      "operatingTest": "Test rejected content and inspect scan failures, promotion decisions and dependency exceptions.",
+      "evidence": [
+        "Scan records",
+        "Quarantine tests",
+        "Build gates",
+        "Exception approvals"
+      ],
+      "limits": "A scan enabled setting does not establish complete input coverage.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "OPS-01",
+      "title": "Logging coverage and delivery integrity",
+      "domain": "Operations",
+      "criteria": [
+        "CC2.1",
+        "CC7.2"
+      ],
+      "owner": "Platform security",
+      "frequency": "Continuous; daily health review",
+      "population": "Organization accounts, enabled regions, required event types and log destinations",
+      "risk": "Actions cannot be reconstructed because events were never recorded or delivered.",
+      "implementation": "Centralize an organization trail, management events and selected sensitive data events in a log account. Enable digest files, restrictive access and delivery alarms. Record excluded events.",
+      "designTest": "Review account/region selectors, key/bucket permissions, digest handling and retention.",
+      "operatingTest": "Trace generated canary events end to end; check delivery errors, event latency, validation results and health alerts throughout the period.",
+      "evidence": [
+        "Selectors",
+        "Trail status",
+        "Canary traces",
+        "Digest validation",
+        "Delivery alarms"
+      ],
+      "limits": "CloudTrail event history covers recent management activity. A trail enabled result alone proves neither data-event coverage nor delivery.",
+      "source": "dataevents",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "OPS-02",
+      "title": "Detection and accountable alert response",
+      "domain": "Operations",
+      "criteria": [
+        "CC7.2",
+        "CC7.3"
+      ],
+      "owner": "Security operations",
+      "frequency": "Continuous; weekly triage review",
+      "population": "GuardDuty, Security Hub CSPM, application alerts and routed findings",
+      "risk": "Threat findings are generated but nobody assesses them.",
+      "implementation": "Define severity routing, owner acknowledgment targets and escalation. Feed GuardDuty and application detections to the response queue and monitor the routing pipeline.",
+      "designTest": "Generate safe sample findings and verify every expected destination and escalation rule.",
+      "operatingTest": "Trace the alert population to acknowledgments, analysis, dispositions and SLA breaches.",
+      "evidence": [
+        "Detector settings",
+        "Alert exports",
+        "Triage tickets",
+        "Routing tests"
+      ],
+      "limits": "GuardDuty threat detection and Security Hub posture checks serve different purposes. Finding suppression is not remediation.",
+      "source": "guardduty",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "OPS-03",
+      "title": "Vulnerability management and verified remediation",
+      "domain": "Operations",
+      "criteria": [
+        "CC7.1",
+        "CC7.2"
+      ],
+      "owner": "Service engineering",
+      "frequency": "Daily intake; weekly review",
+      "population": "Deployed images, EC2 instances, Lambda packages and dependency inventories",
+      "risk": "Known vulnerabilities remain reachable in production.",
+      "implementation": "Use Inspector and build scanning; set risk-based deadlines that consider exposure and exploitability. Track exceptions with expiry and compensating controls.",
+      "designTest": "Reconcile deployed assets to supported scanners and verify deadline rules.",
+      "operatingTest": "Trace findings to patched deployment digests and fresh rescans; preserve aged and accepted failures.",
+      "evidence": [
+        "Asset/scanner reconciliation",
+        "Findings",
+        "Patch tickets",
+        "Rescan evidence"
+      ],
+      "limits": "A critical-CVE count ignores unscanned assets. A closed ticket without a rescan does not prove correction.",
+      "source": "inspector",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "OPS-04",
+      "title": "Incident response and lessons learned",
+      "domain": "Operations",
+      "criteria": [
+        "CC7.3",
+        "CC7.4",
+        "CC7.5"
+      ],
+      "owner": "Incident commander",
+      "frequency": "Per incident; semiannual exercise",
+      "population": "Security events, incidents, communications and recovery actions",
+      "risk": "Teams fail to contain, notify or recover during an incident.",
+      "implementation": "Define severity, command roles, legal/customer communication, forensic custody, containment and recovery runbooks. Exercise a credential compromise with customer-data impact.",
+      "designTest": "Walk through escalation and decision authority including out-of-hours coverage.",
+      "operatingTest": "Inspect the incident population, a tabletop and actual remediation actions with verified completion.",
+      "evidence": [
+        "Incident timeline",
+        "Exercise packet",
+        "Custody log",
+        "After-action register"
+      ],
+      "limits": "Tabletop attendance does not establish that technical recovery succeeds.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "CHG-01",
+      "title": "Independent approval tied to the deployed commit",
+      "domain": "Change management",
+      "criteria": [
+        "CC8.1"
+      ],
+      "owner": "Release owner",
+      "frequency": "Every production deployment",
+      "population": "Production deployment events joined to PRs, reviews and immutable commit IDs",
+      "risk": "Self-approved or unreviewed code reaches production.",
+      "implementation": "Protect branches and release environments, require an independent authorized reviewer, bind approval to the deployed SHA and control emergency paths. Use OIDC for AWS deployment roles.",
+      "designTest": "Inspect bypass rights, approval freshness after commits and actor authorization.",
+      "operatingTest": "Reconcile every deployment to its exact SHA, approval before deployment, independent reviewer and successful required checks.",
+      "evidence": [
+        "Deployment events",
+        "Commit approvals",
+        "Branch rules",
+        "CI check exports"
+      ],
+      "limits": "The executable test uses normalized exports. It does not query GitHub, check review dismissal policy or prove all deployments were exported.",
+      "source": "oidc",
+      "automation": "Executable offline test",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "CHG-02",
+      "title": "Infrastructure policy gates and drift",
+      "domain": "Change management",
+      "criteria": [
+        "CC5.2",
+        "CC7.1",
+        "CC8.1"
+      ],
+      "owner": "Platform engineering",
+      "frequency": "Every change; daily drift review",
+      "population": "Terraform/CloudFormation plans, deployed infrastructure and break-glass changes",
+      "risk": "Approved infrastructure differs from deployed state or violates a baseline.",
+      "implementation": "Review plans and apply policy checks for public exposure, encryption and logging. Pin tool versions, capture applied plan hashes and route out-of-band changes for review.",
+      "designTest": "Inspect rule coverage, bypass authority and false-negative fixtures.",
+      "operatingTest": "Trace plans to approvals, deployments and Config drift. Reconcile emergency changes to retrospective review.",
+      "evidence": [
+        "Plan hashes",
+        "Policy results",
+        "Apply records",
+        "Drift tickets"
+      ],
+      "limits": "A passing plan does not prove the live resource remained configured correctly.",
+      "source": "config",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "CHG-03",
+      "title": "Secure development and dependency provenance",
+      "domain": "Change management",
+      "criteria": [
+        "CC6.8",
+        "CC8.1"
+      ],
+      "owner": "Engineering lead",
+      "frequency": "Every release",
+      "population": "Repositories, dependencies, images, tests and deployment artifacts",
+      "risk": "A compromised dependency or build produces an unsafe release.",
+      "implementation": "Threat-model major features, review code, run security tests and dependency scans, and promote immutable signed or verified artifacts. Restrict build role and repository administration.",
+      "designTest": "Review trust boundaries from source to registry to runtime and required security gates.",
+      "operatingTest": "Inspect release samples across teams and period; verify artifact digest and gate completion at deployment.",
+      "evidence": [
+        "Threat models",
+        "SBOMs",
+        "Scan results",
+        "Artifact provenance",
+        "Release logs"
+      ],
+      "limits": "A signature authenticates a producer; it does not prove secure code or correct configuration.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "RES-01",
+      "title": "Backup coverage and protected recovery points",
+      "domain": "Resilience",
+      "criteria": [
+        "CC7.5",
+        "A1.2"
+      ],
+      "owner": "Backup owner",
+      "frequency": "Daily; monthly inventory review",
+      "population": "RDS, S3 and other committed recovery assets across accounts",
+      "risk": "Ransomware or failure destroys both primary data and recovery copies.",
+      "implementation": "Map asset-specific RPO to backup cadence and retention. Use separate recovery custody, scoped permissions and cross-account/region copies where justified. Validate KMS access and protected vault policy.",
+      "designTest": "Inspect protected assets, failed jobs, deletion rights and recovery dependencies.",
+      "operatingTest": "Reconcile source assets to successful recovery points within approved RPO; investigate failed and missing jobs.",
+      "evidence": [
+        "Backup plans",
+        "Protected-resource inventory",
+        "Job history",
+        "Vault/key policies"
+      ],
+      "limits": "RDS Multi-AZ supports availability; it does not replace a recovery copy.",
+      "source": "backup",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "RES-02",
+      "title": "Restore testing against RTO and RPO",
+      "domain": "Resilience",
+      "criteria": [
+        "CC7.5",
+        "A1.3"
+      ],
+      "owner": "Recovery owner",
+      "frequency": "Quarterly and major architecture change",
+      "population": "Scheduled restore exercises for each critical service and dependency",
+      "risk": "Backups exist but recovery misses customer commitments or restores unusable data.",
+      "implementation": "Restore into an isolated environment, validate application/data integrity, measure recovery from disruption start and measure recovered data lag against RTO/RPO. Record cleanup.",
+      "designTest": "Review test realism, start/finish definitions and required dependency validation.",
+      "operatingTest": "Compare each exercise to four-hour RTO and one-hour RPO lab thresholds; inspect application sign-off and retest late or incomplete exercises.",
+      "evidence": [
+        "Restore job",
+        "Disruption/recovery times",
+        "Recovered-data timestamp",
+        "Validation sign-off"
+      ],
+      "limits": "The executable test evaluates provided measurements and validation status. It does not restore AWS resources.",
+      "source": "backup",
+      "automation": "Executable offline test",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "RES-03",
+      "title": "Availability capacity and failover readiness",
+      "domain": "Resilience",
+      "criteria": [
+        "A1.1",
+        "A1.2",
+        "A1.3"
+      ],
+      "owner": "Site reliability",
+      "frequency": "Monthly; semiannual failover",
+      "population": "Committed service paths, quotas, multi-AZ dependencies and capacity metrics",
+      "risk": "Capacity exhaustion or dependency failure interrupts the service.",
+      "implementation": "Set SLOs tied to commitments, monitor saturation and quotas, distribute critical paths across availability zones and document region-recovery tradeoffs.",
+      "designTest": "Inspect single points of failure, capacity assumptions and alert thresholds.",
+      "operatingTest": "Inspect load/failover tests, response to saturation alarms and measured restoration within objectives.",
+      "evidence": [
+        "Capacity forecasts",
+        "SLO reports",
+        "Load tests",
+        "Failover reports"
+      ],
+      "limits": "An architectural multi-AZ label cannot demonstrate successful failover.",
+      "source": "rds",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "VND-01",
+      "title": "Supplier assurance and AWS report review",
+      "domain": "Third parties",
+      "criteria": [
+        "CC9.2"
+      ],
+      "owner": "Vendor risk owner",
+      "frequency": "At onboarding and annually",
+      "population": "AWS, identity provider, source host and critical monitoring suppliers",
+      "risk": "Inherited controls or supplier dependencies fail without a customer response.",
+      "implementation": "Tier vendors, review current SOC reports and contractual safeguards, identify report exceptions and map relevant complementary user entity controls to internal owners.",
+      "designTest": "Inspect service/region coverage, report period, scope and carve-outs.",
+      "operatingTest": "Review annual packets and follow-up; trace AWS user controls to the service’s own evidence.",
+      "evidence": [
+        "Vendor inventory",
+        "Restricted report-review memo",
+        "CUEC mapping",
+        "Follow-up actions"
+      ],
+      "limits": "AWS SOC 2 does not attest to this SaaS configuration. A bridge letter is a management statement and does not extend the audited period.",
+      "source": "awssoc",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "VND-02",
+      "title": "Business disruption and dependency mitigation",
+      "domain": "Third parties",
+      "criteria": [
+        "CC9.1",
+        "CC9.2"
+      ],
+      "owner": "Service owner",
+      "frequency": "Annual exercise and dependency change",
+      "population": "Critical supplier outages, key staff absence and communications",
+      "risk": "A supplier failure or staff loss interrupts service without an alternative.",
+      "implementation": "Document fallback, dependency recovery, customer notification and alternate operational coverage. Assess insurance and other risk-transfer choices as part of risk treatment.",
+      "designTest": "Inspect dependency scenarios, responsibilities and realistic fallback assumptions.",
+      "operatingTest": "Exercise a supplier outage and inspect actions to remove unworkable dependencies.",
+      "evidence": [
+        "Dependency map",
+        "Continuity exercise",
+        "Treatment decisions"
+      ],
+      "limits": "Risk transfer does not remove the need to meet the service’s own commitments.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "PHY-01",
+      "title": "Physical responsibility boundary",
+      "domain": "Third parties",
+      "criteria": [
+        "CC6.4",
+        "CC6.5"
+      ],
+      "owner": "Facilities and vendor risk",
+      "frequency": "Annual; per personnel change",
+      "population": "AWS facilities plus workforce endpoints and any customer-operated locations",
+      "risk": "Physical custody is assumed to be entirely inherited even for employee devices.",
+      "implementation": "Inherit AWS datacenter physical controls through relevant report review. Maintain endpoint inventory, device access, return and disposal procedures for workforce assets.",
+      "designTest": "Separate provider facilities from customer-controlled devices and premises.",
+      "operatingTest": "Inspect report review and selected device return/disposal records.",
+      "evidence": [
+        "AWS report-review memo",
+        "Endpoint inventory",
+        "Device return records"
+      ],
+      "limits": "AWS datacenter assurance does not cover a contractor laptop.",
+      "source": "shared",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "EVD-01",
+      "title": "Evidence custody and data minimization",
+      "domain": "Assurance engineering",
+      "criteria": [
+        "CC2.1",
+        "CC4.1",
+        "CC5.2"
+      ],
+      "owner": "Evidence custodian",
+      "frequency": "Each collection; monthly access review",
+      "population": "Raw exports, test outputs, manifests and restricted audit artifacts",
+      "risk": "Evidence can be overwritten, detached from its source or expose customer secrets.",
+      "implementation": "Capture UTC observation/collection times, scope and logic hashes, raw response pointers and approvals. Store protected evidence separately from public synthetic examples; restrict retention and access.",
+      "designTest": "Inspect chain of custody, tamper detection, access restrictions and redaction method.",
+      "operatingTest": "Recompute manifests, inspect access history and trace output to raw input and reviewed logic.",
+      "evidence": [
+        "Hash manifest",
+        "Run metadata",
+        "Custody log",
+        "Evidence access review"
+      ],
+      "limits": "A hash detects a changed file only if the manifest is trusted. It is not a signature or proof of source authenticity.",
+      "source": "objectlock",
+      "automation": "Executable evidence packaging",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "EVD-02",
+      "title": "Monitor the monitoring pipeline",
+      "domain": "Assurance engineering",
+      "criteria": [
+        "CC4.1",
+        "CC7.2"
+      ],
+      "owner": "Monitoring owner",
+      "frequency": "Every scheduled run",
+      "population": "Expected collections by account, region, control and cadence",
+      "risk": "A stopped collector displays an old passing result indefinitely.",
+      "implementation": "Compare scheduled runs to an independent heartbeat inventory, alert on missed/failing jobs, monitor evidence age and reconcile expected to observed resources. Assign unknowns to owners.",
+      "designTest": "Seed denied APIs, truncated pages, malformed values and missed schedules; verify alarms and escalation.",
+      "operatingTest": "Inspect missed-run population, freshness results and recovery tickets; verify the detector still runs when the collector fails.",
+      "evidence": [
+        "Schedule inventory",
+        "Heartbeat records",
+        "Seeded-fault results",
+        "Alert tickets"
+      ],
+      "limits": "A job-success signal does not prove a complete extract.",
+      "source": "config",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "EXT-01",
+      "title": "Processing completeness and accuracy",
+      "domain": "Optional extensions",
+      "criteria": [
+        "PI1.1",
+        "PI1.2",
+        "PI1.3",
+        "PI1.4",
+        "PI1.5"
+      ],
+      "owner": "Data processing owner",
+      "frequency": "Every batch and release",
+      "population": "Input manifests, processing jobs, outputs and stored results",
+      "risk": "A job silently drops, duplicates or corrupts customer records.",
+      "implementation": "If processing integrity enters scope, define accepted inputs, processing specifications, reconciliation totals, retry/idempotency and output/storage checks. Reject bad input and route discrepancies.",
+      "designTest": "Inspect completeness and correctness requirements at input, processing, output and storage boundaries.",
+      "operatingTest": "Trace input identifiers to output counts/hashes; seed duplicates, missing records and unauthorized transformations.",
+      "evidence": [
+        "Input/output manifests",
+        "Reconciliation totals",
+        "Job error records",
+        "Validation approvals"
+      ],
+      "limits": "Checksums alone do not prove business-level correctness. This extension is outside the selected examination scenario.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "EXT-02",
+      "title": "Privacy purpose, notice and choice",
+      "domain": "Optional extensions",
+      "criteria": [
+        "P1.1",
+        "P2.1",
+        "P3.1",
+        "P3.2"
+      ],
+      "owner": "Privacy owner",
+      "frequency": "At collection and purpose change",
+      "population": "Personal-information purposes, notices, consent and collection channels",
+      "risk": "Personal information is collected without appropriate notice, authority or choice.",
+      "implementation": "If Privacy enters scope, inventory purposes, define notices and lawful/contractual collection conditions, implement choice where applicable, and record valid consent decisions.",
+      "designTest": "Inspect notice/choice design and alignment with actual collection flows.",
+      "operatingTest": "Trace a personal-information collection to current notice, relevant choice and approved purpose.",
+      "evidence": [
+        "Purpose inventory",
+        "Notice history",
+        "Consent/choice records"
+      ],
+      "limits": "Confidentiality protects designated information; Privacy includes obligations across the personal-information lifecycle. This scenario excludes Privacy attestation.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "EXT-03",
+      "title": "Privacy lifecycle and individual rights",
+      "domain": "Optional extensions",
+      "criteria": [
+        "P4.1",
+        "P4.2",
+        "P4.3",
+        "P5.1",
+        "P5.2",
+        "P6.1",
+        "P6.2",
+        "P6.3",
+        "P6.4",
+        "P6.5",
+        "P6.6",
+        "P6.7",
+        "P7.1",
+        "P8.1"
+      ],
+      "owner": "Privacy operations",
+      "frequency": "Per request; quarterly monitoring",
+      "population": "Personal-information use, retention, rights, disclosures, quality and complaints",
+      "risk": "Individuals cannot exercise applicable rights and onward disclosures escape monitoring.",
+      "implementation": "Define purpose-limited use, retention/disposal, identity verification for requests, access/correction, third-party sharing terms, breach communications and complaint handling.",
+      "designTest": "Trace the lifecycle inventory to rights/disclosure procedures and monitoring responsibilities.",
+      "operatingTest": "Inspect requests, corrections, deletion/retention decisions, third-party authorizations and complaint resolution against stated deadlines.",
+      "evidence": [
+        "Rights register",
+        "Disclosure records",
+        "Correction records",
+        "Complaint monitoring"
+      ],
+      "limits": "This extension needs jurisdiction-specific legal review; a SOC 2 privacy scope does not establish blanket legal compliance.",
+      "source": "sra",
+      "automation": "Human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    },
+    {
+      "id": "AST-01",
+      "title": "Asset inventory and scoped population reconciliation",
+      "domain": "Assurance engineering",
+      "criteria": [
+        "CC2.1",
+        "CC6.1",
+        "CC6.5"
+      ],
+      "owner": "Asset owner",
+      "frequency": "Daily and on account onboarding",
+      "population": "Accounts, regions, global-service identities, resources and owners",
+      "risk": "Unknown assets escape security controls and audit populations.",
+      "implementation": "Reconcile Organizations, approved region lists, workload inventories and service-native exports. Track owner, classification and lifecycle including retired assets. Review gaps before excluding them.",
+      "designTest": "Compare inventory sources and inspect discovery limits, permissions, pagination and global-service handling.",
+      "operatingTest": "Inspect daily differences and onboarding records; trace newly discovered and retired assets to required controls and disposal decisions.",
+      "evidence": [
+        "Account inventory",
+        "Regional resource exports",
+        "Reconciliation records",
+        "Asset lifecycle tickets"
+      ],
+      "limits": "Config only sees supported recorded resources. An inventory needs independent sources and explicit completeness checks.",
+      "source": "config",
+      "automation": "API collection + human review",
+      "mapping": "Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence."
+    }
+  ],
+  "sources": [
+    {
+      "id": "tsc",
+      "title": "AICPA Trust Services Criteria, 2017 with 2022 points of focus",
+      "url": "https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022",
+      "use": "Criteria references; original control designs and paraphrased teaching explanations. Download may require a free account.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "description",
+      "title": "AICPA Description Criteria, 2018 with 2022 guidance",
+      "url": "https://www.aicpa-cima.com/resources/download/get-description-criteria-for-your-organizations-soc-2-r-report",
+      "use": "System-description preparation; download may require a free account.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "soc",
+      "title": "AICPA SOC suite and illustrative report resources",
+      "url": "https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services",
+      "use": "Report types and practitioner resources.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "shared",
+      "title": "AWS shared responsibility",
+      "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+      "use": "Provider/customer boundary.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "awssoc",
+      "title": "AWS SOC FAQ",
+      "url": "https://aws.amazon.com/compliance/soc-faqs/",
+      "use": "AWS reports, Artifact and report use.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "sra",
+      "title": "AWS Security Reference Architecture",
+      "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html",
+      "use": "Multi-account design reference; verify services and implementation for your environment.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "iamlogic",
+      "title": "IAM policy evaluation logic",
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
+      "use": "Effective-access caveats.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "mfa",
+      "title": "IAM MFA API access",
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html",
+      "use": "MFA context and enforcement.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "sessions",
+      "title": "Identity Center authentication sessions",
+      "url": "https://docs.aws.amazon.com/singlesignon/latest/userguide/authconcept.html",
+      "use": "Role sessions can persist independently of the IdP session.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "oidc",
+      "title": "IAM OIDC federation",
+      "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html",
+      "use": "CI workload identity.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "s3encrypt",
+      "title": "S3 server-side encryption",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html",
+      "use": "Defaults and existing object caveats.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "publicrule",
+      "title": "Config S3 public-read managed rule",
+      "url": "https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-public-read-prohibited.html",
+      "use": "Narrow assertion used by the live collector.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "config",
+      "title": "AWS Config rule evaluation",
+      "url": "https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html",
+      "use": "Resource coverage and evaluation semantics.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "configapi",
+      "title": "Config compliance API",
+      "url": "https://docs.aws.amazon.com/config/latest/APIReference/API_GetComplianceDetailsByResource.html",
+      "use": "Pagination and timestamps; no INSUFFICIENT_DATA filtering.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "dataevents",
+      "title": "CloudTrail data events",
+      "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html",
+      "use": "Explicit selectors and data-plane logging.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "digests",
+      "title": "CloudTrail integrity validation",
+      "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html",
+      "use": "Digest delivery versus actual validation.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "objectlock",
+      "title": "S3 Object Lock",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
+      "use": "Retention and custody choices.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "guardduty",
+      "title": "GuardDuty findings",
+      "url": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html",
+      "use": "Threat finding lifecycle.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "inspector",
+      "title": "Inspector findings",
+      "url": "https://docs.aws.amazon.com/inspector/latest/user/findings-managing.html",
+      "use": "Vulnerability findings and remediation.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "backup",
+      "title": "AWS Backup restore testing",
+      "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.html",
+      "use": "Restore exercises and validation.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "rds",
+      "title": "RDS Multi-AZ",
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
+      "use": "Availability architecture.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "auditmanager",
+      "title": "AWS Audit Manager SOC 2 framework",
+      "url": "https://docs.aws.amazon.com/audit-manager/latest/userguide/SOC2.html",
+      "use": "Automated evidence support; not independent attestation.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "athena",
+      "title": "Athena CloudTrail queries",
+      "url": "https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html",
+      "use": "Schema/partition setup for provided SQL.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "scps",
+      "title": "Organizations service control policies",
+      "url": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
+      "use": "Organization guardrails and scope limitations.",
+      "reviewedAt": "2026-10-03"
+    },
+    {
+      "id": "kms",
+      "title": "KMS key rotation",
+      "url": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+      "use": "Rotation eligibility and historical keys.",
+      "reviewedAt": "2026-10-03"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "SOC 2",
+      "definition": "An independent CPA examination of a service organization’s described system and controls against selected Trust Services Criteria. A report provides assurance for an identified system, date or period, and scope; it is not a product certification."
+    },
+    {
+      "term": "SOC 1 / SOC 3",
+      "definition": "SOC 1 concerns controls relevant to user entities’ financial reporting. SOC 3 is a general-use trust services report with less detail. SOC 2 reports typically serve informed, specified users under restricted use."
+    },
+    {
+      "term": "Type I / Type II",
+      "definition": "Type I addresses the system description and suitability of control design at a specified date. Type II adds operating effectiveness throughout a specified period and a description of tests and results. Neither replaces risk assessment."
+    },
+    {
+      "term": "Trust Services Category",
+      "definition": "One of Security, Availability, Processing Integrity, Confidentiality or Privacy. CC1–CC9 are Common Criteria groupings, not nine categories. This scenario selects Security, Availability and Confidentiality."
+    },
+    {
+      "term": "Criterion / point of focus",
+      "definition": "A criterion is an evaluation benchmark. Points of focus help interpret criteria; they are not a mandatory checklist of individual technology settings."
+    },
+    {
+      "term": "Control",
+      "definition": "A specific action or mechanism that reduces a risk and supports an objective. State who does what, on which population, how often, what evidence remains, and how failures are handled."
+    },
+    {
+      "term": "Control owner / operator / reviewer",
+      "definition": "The owner is accountable for the control; the operator performs it; the reviewer assesses evidence and follows up. Separate these roles where a conflict would undermine assurance."
+    },
+    {
+      "term": "Design / implementation / operation",
+      "definition": "Design asks whether a control could meet its objective. Implementation asks whether it was put in place. Operation asks whether it actually worked with the required consistency during the examined period."
+    },
+    {
+      "term": "Population",
+      "definition": "The complete set of events, identities or resources eligible for a test. An access-removal test starts with HR terminations, not only successful removal tickets."
+    },
+    {
+      "term": "Sampling",
+      "definition": "Selecting items from a reconciled population for examination. Selection depends on risk, frequency, reliance and judgment; there is no universal SOC 2 sample count."
+    },
+    {
+      "term": "Evidence",
+      "definition": "Source information supporting a test conclusion. It needs relevant content, trustworthy origin, time coverage, complete population context and custody."
+    },
+    {
+      "term": "PBC",
+      "definition": "Prepared by client: documents and exports management supplies for auditor requests. A PBC index links request IDs to control IDs, dates, source and reviewer."
+    },
+    {
+      "term": "IPE",
+      "definition": "Information produced by the entity. Validate report filters, joins, pagination, date ranges, logic and record counts before relying on internally generated reports."
+    },
+    {
+      "term": "Exception / deficiency",
+      "definition": "A deviation observed during testing versus a weakness in a control’s design or operation. Assess cause, extent and effect; neither a single exception nor a ticket count determines the audit opinion by itself."
+    },
+    {
+      "term": "Finding / root cause",
+      "definition": "A finding documents expected condition, actual condition, cause, impact and corrective action. Root cause explains the system failure, such as an omitted access path, rather than repeating the symptom."
+    },
+    {
+      "term": "Compensating control",
+      "definition": "A different measure that reduces a risk when the preferred measure is unavailable. Its actual coverage and operation need testing; an approval alone does not make it effective."
+    },
+    {
+      "term": "Risk acceptance",
+      "definition": "An authorized, time-limited decision to retain a stated risk with rationale and monitoring. It annotates a failure and does not convert the underlying test to PASS."
+    },
+    {
+      "term": "Readiness",
+      "definition": "Management’s evaluation and preparation before an examination. It identifies gaps and builds evidence; it does not issue an independent SOC 2 opinion."
+    },
+    {
+      "term": "System description",
+      "definition": "Management’s explanation of services, boundaries, commitments, infrastructure, software, people, procedures, data, dependencies and relevant controls."
+    },
+    {
+      "term": "Management assertion",
+      "definition": "Management’s signed claims about the description and controls for the specified engagement. Management owns the assertions; the CPA owns the examination opinion."
+    },
+    {
+      "term": "Subservice organization / carve-out",
+      "definition": "A provider performing part of the service, such as AWS. Under carve-out, its controls are excluded from the SaaS auditor’s testing; management still explains reliance and oversight. Inclusive treatment includes relevant provider controls in scope."
+    },
+    {
+      "term": "CUEC / CSOC",
+      "definition": "Complementary user entity controls are controls expected at customers. Complementary subservice organization controls are controls expected at a provider. The SaaS is a user of AWS and a service provider to its own customers."
+    },
+    {
+      "term": "Bridge letter",
+      "definition": "A management statement addressing the interval after a SOC report period. It is useful contextual evidence, not an extension of the independent audit opinion."
+    },
+    {
+      "term": "Shared responsibility",
+      "definition": "AWS secures its infrastructure; the customer secures what it builds and configures. The boundary changes with the service, data and architecture."
+    },
+    {
+      "term": "AWS account / region / AZ",
+      "definition": "An account is an administrative and security boundary. A region is a geographic service area; availability zones are isolated locations within a region. Define which are in scope and how global services are treated."
+    },
+    {
+      "term": "IAM / STS / Identity Center",
+      "definition": "IAM defines AWS identities and permission policies. STS issues temporary credentials. Identity Center connects workforce access to account roles and permission sets."
+    },
+    {
+      "term": "SCP / boundary / resource policy",
+      "definition": "An SCP restricts permitted actions for affected organization principals; a boundary caps an identity’s permissions. A resource policy controls access on the resource. Effective access depends on all relevant policies and request context."
+    },
+    {
+      "term": "CloudTrail / Config",
+      "definition": "CloudTrail records selected API activity. Config records supported resource configuration and evaluates rules. Events and configuration observations answer different questions."
+    },
+    {
+      "term": "GuardDuty / Security Hub / Inspector",
+      "definition": "GuardDuty detects threats. Security Hub CSPM aggregates posture findings and control checks. Inspector identifies supported workload vulnerabilities. Enablement is only the start of a response process."
+    },
+    {
+      "term": "KMS / SSE-KMS",
+      "definition": "KMS manages cryptographic keys and controlled key use. SSE-KMS is server-side encryption using KMS keys. Key policies, grants and data access need review together."
+    },
+    {
+      "term": "RTO / RPO",
+      "definition": "Recovery time objective is the tolerated time to restore service. Recovery point objective is tolerated data loss measured as time. A restore can meet one and miss the other."
+    },
+    {
+      "term": "Continuous control monitoring",
+      "definition": "Repeated tests with defined scope, fresh inputs, versioned logic, traceable evidence, failure routing and heartbeat checks. A daily snapshot provides observations; it is not automatic proof of uninterrupted effectiveness."
+    },
+    {
+      "term": "PASS / FAIL / UNKNOWN / NOT_APPLICABLE",
+      "definition": "PASS meets the executable assertion using valid evidence. FAIL has a demonstrated deviation. UNKNOWN lacks enough reliable evidence. NOT_APPLICABLE needs a documented, approved scope reason."
+    },
+    {
+      "term": "OIDC / policy as code",
+      "definition": "OIDC lets a trusted workload obtain short-lived AWS identity from verified claims. Policy as code turns reviewed requirements into executable gates or detections with versioned rules and tests."
+    }
+  ],
+  "phases": [
+    {
+      "number": "01",
+      "title": "Define the service",
+      "purpose": "Freeze the boundary before choosing tools.",
+      "activities": "Interview product, legal, engineering and support; register commitments, data types, dependencies and regions. Decide selected categories with the CPA.",
+      "deliverables": "System description draft, commitments register, data-flow diagram, approved scope.",
+      "owner": "Service owner",
+      "gate": "Every material commitment has a measurable requirement and accountable owner."
+    },
+    {
+      "number": "02",
+      "title": "Assess risk and design controls",
+      "purpose": "Choose controls from risks and commitments.",
+      "activities": "Threat-model tenant data and administrative paths; score inherent and residual risk. Specify operator, reviewer, population, cadence, evidence, mapping rationale and exceptions.",
+      "deliverables": "Risk register, control catalog, RACI, policy set and measurement rules.",
+      "owner": "Risk and control owners",
+      "gate": "Every material risk has a treatment; mapped controls have a plausible design."
+    },
+    {
+      "number": "03",
+      "title": "Implement and prove the design",
+      "purpose": "Test the data path and failure path.",
+      "activities": "Deploy scoped guardrails in a sandbox. Reconcile input populations. Seed denied APIs, stale evidence, missed joins and self-approvals. Compare automated and manual results in shadow operation.",
+      "deliverables": "Design workpapers, known-fault fixtures, collector validation and implementation evidence.",
+      "owner": "Platform and assurance engineering",
+      "gate": "Bugs, missing coverage and bypasses are understood before reliance."
+    },
+    {
+      "number": "04",
+      "title": "Run a readiness assessment",
+      "purpose": "Find deficiencies before the period starts.",
+      "activities": "Walk through each control. Inspect evidence, owner readiness and dependency reports. Record findings with impact, root cause and dates; perform independent retests.",
+      "deliverables": "Readiness report, PBC index, corrective-action plan and retest evidence.",
+      "owner": "Assurance lead",
+      "gate": "Management decides readiness using open risks and evidence gaps, without claiming an audit opinion."
+    },
+    {
+      "number": "05",
+      "title": "Operate across the period",
+      "purpose": "Collect evidence as work happens.",
+      "activities": "Run controls at approved cadence, monitor collector heartbeat, reconcile populations and review deviations. Preserve failures, approvals and changing control versions throughout the period.",
+      "deliverables": "Dated operation records, change histories, monthly reviews and exception register.",
+      "owner": "Control operators and reviewers",
+      "gate": "The period has explainable coverage and all deviations have owners."
+    },
+    {
+      "number": "06",
+      "title": "Support the independent examination",
+      "purpose": "Make every assertion traceable.",
+      "activities": "Provide reconciled populations and restricted evidence, coordinate walkthroughs and track requests. Answer CPA-selected tests accurately; evaluate exceptions and subsequent events with management.",
+      "deliverables": "Management description/assertion drafts, PBC responses, test support and exception analysis.",
+      "owner": "Management and CPA practitioner",
+      "gate": "The CPA has sufficient appropriate evidence and independently determines report conclusions."
+    },
+    {
+      "number": "07",
+      "title": "Sustain assurance and communicate",
+      "purpose": "Use findings to improve the service.",
+      "activities": "Review issued report use restrictions, customer CUECs, scope and exceptions. Operate corrective actions, update commitments and reassess after significant change.",
+      "deliverables": "Executive brief, verified corrective actions, customer-assurance response and next-cycle plan.",
+      "owner": "Service leadership",
+      "gate": "Findings stay traceable; the next period starts with validated improvements."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-01",
+      "scenario": "Former engineer retains usable role-session access",
+      "impact": "Unauthorized access to tenant data",
+      "inherent": "High",
+      "residual": "Medium pending verified session controls",
+      "controls": [
+        "IAM-01",
+        "IAM-04",
+        "OPS-02"
+      ],
+      "owner": "Identity operations",
+      "treatment": "Join all access paths, address active sessions, and retest effective access."
+    },
+    {
+      "id": "R-02",
+      "scenario": "Customer bucket policy enables public reads",
+      "impact": "Customer content disclosure",
+      "inherent": "High",
+      "residual": "Medium pending policy remediation",
+      "controls": [
+        "DAT-01",
+        "DAT-02",
+        "APP-01"
+      ],
+      "owner": "Storage owner",
+      "treatment": "Apply blocks, review grants, reconcile inventory and verify external denial."
+    },
+    {
+      "id": "R-03",
+      "scenario": "Production release uses an approval for a different SHA",
+      "impact": "Unreviewed code enters production",
+      "inherent": "High",
+      "residual": "Medium pending release-gate correction",
+      "controls": [
+        "CHG-01",
+        "CHG-02"
+      ],
+      "owner": "Release owner",
+      "treatment": "Invalidate approvals on change and require the exact deployed SHA."
+    },
+    {
+      "id": "R-04",
+      "scenario": "Backup restores after the service deadline or loses too much data",
+      "impact": "Contractual recovery commitment missed",
+      "inherent": "High",
+      "residual": "Medium pending successful exercise",
+      "controls": [
+        "RES-01",
+        "RES-02",
+        "RES-03"
+      ],
+      "owner": "Recovery owner",
+      "treatment": "Measure both RTO and RPO including dependent services and application validation."
+    },
+    {
+      "id": "R-05",
+      "scenario": "Evidence collector loses a region but dashboard remains green",
+      "impact": "Unsupported management assertions",
+      "inherent": "High",
+      "residual": "Medium pending heartbeat and reconciliation",
+      "controls": [
+        "MON-01",
+        "EVD-01",
+        "EVD-02"
+      ],
+      "owner": "Monitoring owner",
+      "treatment": "Alert on missing runs, missing identities and stale observations."
+    },
+    {
+      "id": "R-06",
+      "scenario": "AWS or identity provider outage prevents service operation",
+      "impact": "Service interruption and customer notification failures",
+      "inherent": "High",
+      "residual": "Medium with tested dependency plan",
+      "controls": [
+        "VND-01",
+        "VND-02",
+        "RES-03"
+      ],
+      "owner": "Service owner",
+      "treatment": "Review relevant reports and commitments, test fallback and communication."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-01",
+      "control": "IAM-04",
+      "severity": "High",
+      "condition": "One termination retained effective access for 3 hours against the one-hour lab SLA.",
+      "cause": "The workflow disabled the IdP but omitted existing role sessions from the access-path join.",
+      "impact": "A departed worker could still access AWS resources during the gap.",
+      "owner": "Identity operations",
+      "due": "2026-10-15 (scenario)",
+      "action": "Add role-session handling, enforce short privileged sessions and validate every account assignment/native credential path.",
+      "retest": "Use a synthetic leaver with an active session. Validate denial on each path and final removal within 60 minutes.",
+      "closure": "Open in baseline; proposed fix and retest plan only. Original period deviation remains in the evidence."
+    },
+    {
+      "id": "F-02",
+      "control": "DAT-01",
+      "severity": "High",
+      "condition": "customer-export has a NON_COMPLIANT public-read evaluation.",
+      "cause": "A migration copied a broad policy and had no post-migration access test.",
+      "impact": "Customer export data may be externally readable; configuration evidence alone does not establish actual disclosure.",
+      "owner": "Storage owner",
+      "due": "2026-10-08 (scenario)",
+      "action": "Remove the broad grant, enable required blocks, inspect access history and test read/write paths.",
+      "retest": "Obtain a fresh Config evaluation and an independent negative external-access test with the correct request context.",
+      "closure": "Open. Accepted risk, if granted, would remain a failing result."
+    },
+    {
+      "id": "F-03",
+      "control": "CHG-01",
+      "severity": "High",
+      "condition": "deploy-03 used an approval for an earlier commit; deploy-02 was self-approved.",
+      "cause": "The release join used PR number instead of immutable deployed SHA, and did not compare actor identities.",
+      "impact": "Unreviewed changes can reach the production service.",
+      "owner": "Release owner",
+      "due": "2026-10-12 (scenario)",
+      "action": "Bind approvals to exact SHA, require independent authorized review and close administrator bypass paths.",
+      "retest": "Seed a post-approval commit and a self-approval; both must fail while an authorized exact-SHA approval passes.",
+      "closure": "Open. A later successful deployment cannot erase the prior exception."
+    },
+    {
+      "id": "F-04",
+      "control": "RES-02",
+      "severity": "High",
+      "condition": "exercise-02 took 5 hours; exercise-03 recovered data 2 hours behind disruption time.",
+      "cause": "The recovery procedure omitted startup dependencies and used an insufficient backup schedule.",
+      "impact": "The service can miss its four-hour recovery or one-hour data-loss objective.",
+      "owner": "Recovery owner",
+      "due": "2026-10-22 (scenario)",
+      "action": "Fix the dependency order and backup cadence, then repeat an application-validated exercise.",
+      "retest": "Measure from disruption start to validated service recovery; validate recovered-data timestamp and cleanup.",
+      "closure": "Open pending a complete exercise and independent review."
+    },
+    {
+      "id": "F-05",
+      "control": "EVD-02",
+      "severity": "Medium",
+      "condition": "archive bucket evidence is stale; one expected bucket has no Config evaluation.",
+      "cause": "The team watched job exit status without reconciling the expected bucket population or evaluation age.",
+      "impact": "Two scoped items have UNKNOWN assurance even if the job succeeds.",
+      "owner": "Monitoring owner",
+      "due": "2026-10-10 (scenario)",
+      "action": "Add scope reconciliation and observation-age checks with independently scheduled alerts.",
+      "retest": "Drop an expected record and advance observation age past 24 hours; verify UNKNOWN and escalation.",
+      "closure": "Open; missing coverage is not treated as compliant."
+    }
+  ],
+  "questions": [
+    {
+      "question": "Why are CC1–CC9 not nine Trust Services Categories?",
+      "answer": "They group the Common Criteria. The five categories are Security, Availability, Processing Integrity, Confidentiality and Privacy. Group coverage is a navigation aid, not evidence that every criterion is satisfied."
+    },
+    {
+      "question": "Can an AWS SOC 2 report prove this SaaS is SOC 2 compliant?",
+      "answer": "No. Review AWS as a subservice organization, confirm relevant coverage, and implement customer responsibilities. The SaaS management description and controls need their own independent examination."
+    },
+    {
+      "question": "Does MFA enabled in an IAM credential report prove workforce MFA?",
+      "answer": "No. Federated workers may not be IAM users. Inspect IdP enforcement, bypasses and sign-in evidence, then correlate cloud assignments and sessions."
+    },
+    {
+      "question": "What is the population for leaver testing?",
+      "answer": "All relevant HR terminations, joined to every access path. Starting with closed offboarding tickets omits the people whose tickets were never created."
+    },
+    {
+      "question": "A daily collector returns zero failures. Is the control effective?",
+      "answer": "First establish scope completeness, evidence freshness, logic accuracy, expected schedule coverage and response to failures. Zero returned records or stale inputs must not become a passing conclusion."
+    },
+    {
+      "question": "A deployed commit differs from the approved SHA. What should happen?",
+      "answer": "Preserve a FAIL for the release. Investigate whether independent authorized review covered the deployed code before deployment, and test the corrected gate with a post-approval commit."
+    },
+    {
+      "question": "Backups succeed daily. Why test a restore?",
+      "answer": "A backup can be inaccessible, unusable or too old. Measure validated recovery time and recovered-data lag against RTO/RPO with the required dependencies."
+    },
+    {
+      "question": "What happens to a failed result when management accepts the risk?",
+      "answer": "The failure stays visible. Record authorizer, rationale, compensating controls and expiry, and continue monitoring. Risk acceptance is not successful control operation."
+    },
+    {
+      "question": "Is a file hash sufficient evidence custody?",
+      "answer": "No. It detects change relative to a trusted digest, but does not authenticate the origin or protect the manifest. Access controls, retention, source context and protected storage complete the custody design."
+    },
+    {
+      "question": "How do you close a finding?",
+      "answer": "Fix the root cause, collect new evidence, run an independent retest against the original objective, and approve closure. Preserve the original result and impact on the examination period."
+    },
+    {
+      "question": "What does one NON_COMPLIANT Config result prove?",
+      "answer": "A narrow AWS rule assertion failed for that resource and observation. It supports a finding but does not by itself determine the effectiveness of the entire control, criterion or audit opinion."
+    },
+    {
+      "question": "Who issues the SOC 2 opinion?",
+      "answer": "An independent qualified CPA practitioner. Management owns the description and assertion; engineering and assurance teams supply evidence and remediation support."
+    }
+  ],
+  "scope": {
+    "name": "Northstar Workspace",
+    "service": "A fictional multi-tenant document workflow API: upload, process, store and export customer content.",
+    "period": "2026-07-01 through 2026-09-30 (illustrative Type II period)",
+    "categories": [
+      "Security",
+      "Availability",
+      "Confidentiality"
+    ],
+    "commitments": [
+      "Role-based customer and administrative access",
+      "Confidential customer content and controlled deletion",
+      "99.9% monthly service availability (scenario commitment)",
+      "4-hour RTO and 1-hour RPO for the core service"
+    ],
+    "boundary": "Application, production/recovery infrastructure, cloud identity, release pipeline, security operations, supporting personnel and critical suppliers.",
+    "exclusions": "Corporate finance systems and unrelated product lines. Processing Integrity and Privacy are explored as optional extensions, outside this scenario’s selected scope.",
+    "regions": [
+      "us-east-1",
+      "us-west-2"
+    ],
+    "accounts": [
+      {
+        "name": "Management",
+        "id": "111111111111",
+        "purpose": "Organizations administration; tightly restricted, no workloads"
+      },
+      {
+        "name": "Security",
+        "id": "222222222222",
+        "purpose": "Delegated security administration and triage"
+      },
+      {
+        "name": "Log archive",
+        "id": "333333333333",
+        "purpose": "Central logs and protected restricted evidence"
+      },
+      {
+        "name": "Production",
+        "id": "444444444444",
+        "purpose": "API, processing, customer storage and database"
+      },
+      {
+        "name": "Nonproduction",
+        "id": "555555555555",
+        "purpose": "Tests with synthetic data; no production customer content"
+      },
+      {
+        "name": "Recovery",
+        "id": "666666666666",
+        "purpose": "Recovery copies and isolated restore exercises"
+      }
+    ],
+    "provider": "AWS is a carved-out subservice organization in this teaching scenario. Review relevant AWS SOC coverage and complementary controls; retain vendor report material in restricted storage.",
+    "customer": "Illustrative customer CUECs: manage tenant administrators, approve user access, protect client credentials, configure integration permissions, and report suspected compromise.",
+    "dataflow": [
+      "Customer → HTTPS edge/WAF → load balancer",
+      "Load balancer → private ECS API → tenant authorization",
+      "API → KMS-protected S3 objects / private RDS metadata",
+      "Queued processing → narrow task role → authorized output",
+      "IdP / Identity Center → short-lived workforce role sessions",
+      "CI OIDC → reviewed deployment → ECR / ECS",
+      "CloudTrail + Config + application logs → log/security accounts",
+      "Read-only collector → normalized evidence → test → review → protected custody"
+    ],
+    "decisions": [
+      [
+        "Data",
+        "Customer content: Confidential; metadata may include personal identifiers. Logs use redacted tenant identifiers; no payload content."
+      ],
+      [
+        "AWS boundary",
+        "AWS physical infrastructure is inherited; application authorization, AWS configuration, identity, logging coverage and customer commitments remain customer responsibilities."
+      ],
+      [
+        "Global services",
+        "Explicitly inventory IAM/Organizations/Identity Center and recording region; a two-region scan is not a complete global-service inventory."
+      ],
+      [
+        "Availability",
+        "The lab objectives are selected commitments, not universal SOC 2 thresholds. A native service feature is evidence input, not assurance by itself."
+      ],
+      [
+        "Dependencies",
+        "AWS, external IdP, source/build host and monitoring provider. Review scope, report periods, exceptions and relevant complementary controls."
+      ]
+    ]
+  },
+  "guides": [
+    {
+      "id": "01",
+      "title": "Foundations and beginner definitions",
+      "content": "# Foundations and beginner definitions\n\nStart with the distinction between a promise, a risk and a control. A customer expects content to stay private. Unauthorized access is a risk to that promise. A tenant-aware authorization check is one control. A denied cross-tenant request is test evidence. Encryption and monitoring add separate layers, each with its own limits.\n\nSOC 2 describes assurance over a specific system. A tool score, cloud provider report or evidence bundle cannot issue that assurance. An independent CPA evaluates the description and controls for the agreed engagement.\n\n## SOC 2\n\nAn independent CPA examination of a service organization’s described system and controls against selected Trust Services Criteria. A report provides assurance for an identified system, date or period, and scope; it is not a product certification.\n\n## SOC 1 / SOC 3\n\nSOC 1 concerns controls relevant to user entities’ financial reporting. SOC 3 is a general-use trust services report with less detail. SOC 2 reports typically serve informed, specified users under restricted use.\n\n## Type I / Type II\n\nType I addresses the system description and suitability of control design at a specified date. Type II adds operating effectiveness throughout a specified period and a description of tests and results. Neither replaces risk assessment.\n\n## Trust Services Category\n\nOne of Security, Availability, Processing Integrity, Confidentiality or Privacy. CC1–CC9 are Common Criteria groupings, not nine categories. This scenario selects Security, Availability and Confidentiality.\n\n## Criterion / point of focus\n\nA criterion is an evaluation benchmark. Points of focus help interpret criteria; they are not a mandatory checklist of individual technology settings.\n\n## Control\n\nA specific action or mechanism that reduces a risk and supports an objective. State who does what, on which population, how often, what evidence remains, and how failures are handled.\n\n## Control owner / operator / reviewer\n\nThe owner is accountable for the control; the operator performs it; the reviewer assesses evidence and follows up. Separate these roles where a conflict would undermine assurance.\n\n## Design / implementation / operation\n\nDesign asks whether a control could meet its objective. Implementation asks whether it was put in place. Operation asks whether it actually worked with the required consistency during the examined period.\n\n## Population\n\nThe complete set of events, identities or resources eligible for a test. An access-removal test starts with HR terminations, not only successful removal tickets.\n\n## Sampling\n\nSelecting items from a reconciled population for examination. Selection depends on risk, frequency, reliance and judgment; there is no universal SOC 2 sample count.\n\n## Evidence\n\nSource information supporting a test conclusion. It needs relevant content, trustworthy origin, time coverage, complete population context and custody.\n\n## PBC\n\nPrepared by client: documents and exports management supplies for auditor requests. A PBC index links request IDs to control IDs, dates, source and reviewer.\n\n## IPE\n\nInformation produced by the entity. Validate report filters, joins, pagination, date ranges, logic and record counts before relying on internally generated reports.\n\n## Exception / deficiency\n\nA deviation observed during testing versus a weakness in a control’s design or operation. Assess cause, extent and effect; neither a single exception nor a ticket count determines the audit opinion by itself.\n\n## Finding / root cause\n\nA finding documents expected condition, actual condition, cause, impact and corrective action. Root cause explains the system failure, such as an omitted access path, rather than repeating the symptom.\n\n## Compensating control\n\nA different measure that reduces a risk when the preferred measure is unavailable. Its actual coverage and operation need testing; an approval alone does not make it effective.\n\n## Risk acceptance\n\nAn authorized, time-limited decision to retain a stated risk with rationale and monitoring. It annotates a failure and does not convert the underlying test to PASS.\n\n## Readiness\n\nManagement’s evaluation and preparation before an examination. It identifies gaps and builds evidence; it does not issue an independent SOC 2 opinion.\n\n## System description\n\nManagement’s explanation of services, boundaries, commitments, infrastructure, software, people, procedures, data, dependencies and relevant controls.\n\n## Management assertion\n\nManagement’s signed claims about the description and controls for the specified engagement. Management owns the assertions; the CPA owns the examination opinion.\n\n## Subservice organization / carve-out\n\nA provider performing part of the service, such as AWS. Under carve-out, its controls are excluded from the SaaS auditor’s testing; management still explains reliance and oversight. Inclusive treatment includes relevant provider controls in scope.\n\n## CUEC / CSOC\n\nComplementary user entity controls are controls expected at customers. Complementary subservice organization controls are controls expected at a provider. The SaaS is a user of AWS and a service provider to its own customers.\n\n## Bridge letter\n\nA management statement addressing the interval after a SOC report period. It is useful contextual evidence, not an extension of the independent audit opinion.\n\n## Shared responsibility\n\nAWS secures its infrastructure; the customer secures what it builds and configures. The boundary changes with the service, data and architecture.\n\n## AWS account / region / AZ\n\nAn account is an administrative and security boundary. A region is a geographic service area; availability zones are isolated locations within a region. Define which are in scope and how global services are treated.\n\n## IAM / STS / Identity Center\n\nIAM defines AWS identities and permission policies. STS issues temporary credentials. Identity Center connects workforce access to account roles and permission sets.\n\n## SCP / boundary / resource policy\n\nAn SCP restricts permitted actions for affected organization principals; a boundary caps an identity’s permissions. A resource policy controls access on the resource. Effective access depends on all relevant policies and request context.\n\n## CloudTrail / Config\n\nCloudTrail records selected API activity. Config records supported resource configuration and evaluates rules. Events and configuration observations answer different questions.\n\n## GuardDuty / Security Hub / Inspector\n\nGuardDuty detects threats. Security Hub CSPM aggregates posture findings and control checks. Inspector identifies supported workload vulnerabilities. Enablement is only the start of a response process.\n\n## KMS / SSE-KMS\n\nKMS manages cryptographic keys and controlled key use. SSE-KMS is server-side encryption using KMS keys. Key policies, grants and data access need review together.\n\n## RTO / RPO\n\nRecovery time objective is the tolerated time to restore service. Recovery point objective is tolerated data loss measured as time. A restore can meet one and miss the other.\n\n## Continuous control monitoring\n\nRepeated tests with defined scope, fresh inputs, versioned logic, traceable evidence, failure routing and heartbeat checks. A daily snapshot provides observations; it is not automatic proof of uninterrupted effectiveness.\n\n## PASS / FAIL / UNKNOWN / NOT_APPLICABLE\n\nPASS meets the executable assertion using valid evidence. FAIL has a demonstrated deviation. UNKNOWN lacks enough reliable evidence. NOT_APPLICABLE needs a documented, approved scope reason.\n\n## OIDC / policy as code\n\nOIDC lets a trusted workload obtain short-lived AWS identity from verified claims. Policy as code turns reviewed requirements into executable gates or detections with versioned rules and tests.\n\nRead [the AICPA resources](12-sources.md) alongside these original teaching summaries. No licensed criteria text is reproduced.\n"
+    },
+    {
+      "id": "02",
+      "title": "Northstar Workspace system description and scope",
+      "content": "# Northstar Workspace system description and scope\n\n**Illustrative management draft, not a completed auditor-approved description.** Description Criteria are distinct from Trust Services Criteria. Management should validate this draft against the AICPA Description Criteria and actual system before an engagement.\n\n## Service and principal commitments\n\nNorthstar provides a multi-tenant API to upload documents, process them asynchronously, store them and export authorized results. Customers choose tenant administrators who manage their users. Customer content is Confidential. Tenant metadata can contain personal identifiers; excluding the Privacy category does not remove privacy or legal responsibilities.\n\nScenario commitments are role-based access, confidential handling and controlled deletion, 99.9% monthly availability, four-hour RTO and one-hour RPO. These are teaching assumptions, not SOC 2 mandated numbers. Availability needs a defined measurement window, covered endpoints, approved exclusions and source metrics. Recovery applies to the core service and its dependencies, not only a restored database.\n\nThe illustrative Type II period is **2026-07-01 through 2026-09-30**. Management must identify material changes and relevant incidents during that interval and subsequent events up to report issuance. The lab's last-day snapshot is not evidence for all three months.\n\nSelected categories: Security, Availability and Confidentiality. Processing Integrity and Privacy are optional appendices outside this scenario. Corporate finance and unrelated products are excluded. Source/build host, external IdP, cloud identity, deployment process, workforce endpoints and monitoring suppliers support the described service and must be considered even when they are outside AWS.\n\n## Infrastructure and trust boundaries\n\nSix fictional accounts separate administration, security, logs, production, nonproduction and recovery. IDs in the source data are placeholders. Primary region is us-east-1; recovery region is us-west-2. Global-service inventories are handled explicitly, with source and recording region identified.\n\n```mermaid\nflowchart TD\n  Customer[Customer tenant] --> Edge[HTTPS edge and WAF]\n  Edge --> API[Private ECS API with tenant authorization]\n  API --> Objects[Customer S3 objects]\n  API --> DB[Private RDS metadata]\n  API --> Queue[Queued processing]\n  Queue --> Worker[Scoped ECS worker role]\n  Worker --> Objects\n  IdP[External identity provider] --> SSO[IAM Identity Center]\n  SSO --> Roles[Temporary workforce roles]\n  CI[Source and CI host] --> OIDC[Constrained OIDC deployment role]\n  OIDC --> Release[Approved release to ECR and ECS]\n  API --> AppLogs[Redacted application logs]\n  Roles --> Trail[Selected CloudTrail events]\n  Release --> Config[AWS Config observations]\n  AppLogs --> Logs[Log archive and security accounts]\n  Trail --> Logs\n  Config --> Collector[Read-only evidence collector]\n  Collector --> Tests[Versioned narrow assertions]\n  Tests --> Review[Owner action and independent review]\n```\n\nAn application authorization boundary separates tenants. AWS IAM cannot by itself enforce every application tenant decision. Storage keys and resource policies separate permitted workloads; they supplement application authorization. Production and nonproduction have separate data and deployment identities. Recovery access has distinct custody and reviewed grants.\n\n## Software, people, procedures and data\n\nSoftware includes the API, asynchronous workers, database schema, source repositories, container images, release automation and evidence tooling. People include service leadership, identity/network/platform engineers, support, incident command, data owners, vendor risk and independent control reviewers. Procedures include onboarding/offboarding, access reviews, secure releases, vulnerability response, backup/restore, incident notification, supplier review and evidence custody.\n\nData classes include customer content, processing metadata, account assignments, deployment logs and restricted audit evidence. Trace each class through collection, processing, storage, export, retention, backup and disposal. Keep secrets and raw personal/customer payloads out of public work samples. Deletion commitments must explain older versions, retention holds and backup expiration.\n\n## Provider and customer responsibilities\n\nAWS is a **carved-out subservice organization** here. AWS datacenter controls are inherited subject to relevant report review; the SaaS auditor does not test them as if they were operated by Northstar. Northstar owns its application, configuration, credentials, permissions, selected logging, customer-data handling and monitoring response. For EC2, guest OS patching remains a customer responsibility; a managed service shifts some infrastructure work without transferring application accountability.\n\nReview the actual AWS report through Artifact, under its terms. Confirm service and region coverage, period, opinion, exceptions, scope and complementary controls. A public SOC 3 report or logo is not a replacement for the restricted detailed report. Do not include restricted provider reports in this repository.\n\nThe SaaS is a **user entity of AWS**, but its own customers are **user entities of the SaaS**. Relevant AWS complementary user entity controls become Northstar responsibilities. Illustrative Northstar customer CUECs include managing tenant administrators, reviewing user grants, securing client credentials, configuring integration permissions and reporting suspected compromise.\n\n## Before management approves scope\n\n1. Reconcile account inventory to Organizations, include the management account and identify global services.\n2. Reconcile services and resources to independent owner inventories, including unrecorded or unsupported Config resources.\n3. Trace every contract/notice commitment to a requirement and control owner.\n4. Validate every boundary and exclusion with product, security, legal and the CPA practitioner.\n5. Record changes, incidents, data migrations and providers affecting the description during the period.\n6. Version the scope and hash it into every evidence run. A scope change requires review, not an automatic adjustment of the denominator.\n"
+    },
+    {
+      "id": "03",
+      "title": "Risk-based control design",
+      "content": "# Risk-based control design\n\nA catalog is useful only when its controls support the actual system objectives. Start with commitments, then threats and consequences. Record inherent risk before treatment and residual risk after tested measures. Use a documented qualitative scale; do not imply mathematical accuracy from a High/Medium label.\n\n## R-01: Former engineer retains usable role-session access\n\nImpact: Unauthorized access to tenant data. Inherent: High. Residual: Medium pending verified session controls. Owner: Identity operations.\n\nTreatment: Join all access paths, address active sessions, and retest effective access.\n\nSupporting controls: IAM-01, IAM-04, OPS-02.\n\n## R-02: Customer bucket policy enables public reads\n\nImpact: Customer content disclosure. Inherent: High. Residual: Medium pending policy remediation. Owner: Storage owner.\n\nTreatment: Apply blocks, review grants, reconcile inventory and verify external denial.\n\nSupporting controls: DAT-01, DAT-02, APP-01.\n\n## R-03: Production release uses an approval for a different SHA\n\nImpact: Unreviewed code enters production. Inherent: High. Residual: Medium pending release-gate correction. Owner: Release owner.\n\nTreatment: Invalidate approvals on change and require the exact deployed SHA.\n\nSupporting controls: CHG-01, CHG-02.\n\n## R-04: Backup restores after the service deadline or loses too much data\n\nImpact: Contractual recovery commitment missed. Inherent: High. Residual: Medium pending successful exercise. Owner: Recovery owner.\n\nTreatment: Measure both RTO and RPO including dependent services and application validation.\n\nSupporting controls: RES-01, RES-02, RES-03.\n\n## R-05: Evidence collector loses a region but dashboard remains green\n\nImpact: Unsupported management assertions. Inherent: High. Residual: Medium pending heartbeat and reconciliation. Owner: Monitoring owner.\n\nTreatment: Alert on missing runs, missing identities and stale observations.\n\nSupporting controls: MON-01, EVD-01, EVD-02.\n\n## R-06: AWS or identity provider outage prevents service operation\n\nImpact: Service interruption and customer notification failures. Inherent: High. Residual: Medium with tested dependency plan. Owner: Service owner.\n\nTreatment: Review relevant reports and commitments, test fallback and communication.\n\nSupporting controls: VND-01, VND-02, RES-03.\n\n## A control specification before code\n\nSpecify objective, owner, operator, reviewer, population source, required frequency, evidence sources, parameters, failure semantics, remediation and limits. A criterion supports more than one possible control and a control may contribute to several criteria. Record rationale and which parts remain untested. Reuse evidence across requirements only after assessing matching scope, frequency, objectives and population.\n\nWorked chain: customer confidentiality commitment → departed worker misuse risk R-01 → IAM-04 all-path access removal → join HR events to IdP/cloud/native credential/session records → one-hour threshold → late removal finding F-01 → session handling fix → independent effective-access retest. This chain prevents a control from becoming an isolated technology checkbox.\n\nThe one-hour SLA is approved scenario configuration. A real organization must set deadlines from its risks and commitments, then maintain sufficient removal evidence. Tests never invent thresholds because a framework is present.\n\n## Design, implementation and operation workpapers\n\nDesign: does every identity path have a removal method, source, join and failure escalation? Implementation: have those methods been configured and tested? Operation: did every relevant termination during the period lose effective access within the deadline? An on-time ticket does not prove that a role session stopped working.\n\nFor each automated test, assess the logic using seeded known failures and known valid records. Validate extracts and timestamps independently. Review code changes and operator rights. Collectors are privileged information processors: their own access, change control and custody must be assessed.\n\n## Human approval and risk acceptance\n\nRequire an authorized acceptor independent of the operator where appropriate. Record the failure, business impact, reason, scope, compensating measure, expiry and review cadence. At expiry, retest or escalate. An approved exception stays visible in failed test results and examination-period analysis. Do not relabel a failed control as NOT_APPLICABLE simply to remove it from the score.\n"
+    },
+    {
+      "id": "04",
+      "title": "Control catalog and AWS implementation/testing handbook",
+      "content": "# Control catalog and AWS implementation/testing handbook\n\n36 original illustrative controls. The selected scenario excludes EXT-01 through EXT-03; they teach optional category work. Mappings indicate contributions, not a full compliance determination. Each implementation describes a proposed design, not a claim that an AWS deployment exists.\n\n## GOV-01 · Accountability and independent oversight\n\n**Domain:** Governance · **Owner:** Executive sponsor · **Frequency:** Quarterly\n\n**Supporting references:** CC1.1, CC1.2, CC1.3, CC1.5. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Controls can be bypassed when responsibilities and escalation rights are unclear.\n\n**Population:** Service leadership, control owners, oversight meetings\n\n**Proposed implementation:** Approve an ethics policy, accountability matrix, delegated authority and independent oversight charter. Assign a primary and backup for every control.\n\n**Design test:** Inspect approval authority and conflicts between operator, reviewer and risk acceptor.\n\n**Operating test:** Inspect each quarterly oversight packet and trace overdue issues to decisions and follow-up.\n\n**Evidence:** Approved charter; RACI version history; Meeting minutes; Action register.\n\n**Automation:** Human review.\n\n**Limits:** AWS account ownership does not establish organizational accountability.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## GOV-02 · Workforce competence and security education\n\n**Domain:** Governance · **Owner:** People operations · **Frequency:** At hire and annually\n\n**Supporting references:** CC1.4, CC2.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Untrained personnel mishandle customer data or escalate incidents too late.\n\n**Population:** Employees and contractors with scoped system access\n\n**Proposed implementation:** Require role-specific onboarding, acceptable-use acknowledgement and security training before production access. Track contractors as well as employees.\n\n**Design test:** Confirm curriculum addresses data handling, reporting, privileged work and access termination.\n\n**Operating test:** Reconcile HR roster to completion records. Inspect overdue training and approved follow-up for every missed deadline.\n\n**Evidence:** HR roster; Training export; Acknowledgements; Follow-up tickets.\n\n**Automation:** Human review.\n\n**Limits:** A completion certificate does not prove a person can perform an operational procedure.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## GOV-03 · Commitments and customer communication\n\n**Domain:** Governance · **Owner:** Service owner · **Frequency:** Quarterly and material change\n\n**Supporting references:** CC2.1, CC2.2, CC2.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** The system fails promises that engineering never received.\n\n**Population:** Contracts, security promises, SLAs, notices and support channels\n\n**Proposed implementation:** Maintain a commitments register linking customer promises to controls, metrics and notification procedures. Approve changes jointly with legal and engineering.\n\n**Design test:** Trace each promise to a measurable system requirement and named owner.\n\n**Operating test:** Inspect contract changes and a notification exercise; verify owners received changes before release.\n\n**Evidence:** Commitments register; Approved notices; Communication records.\n\n**Automation:** Human review.\n\n**Limits:** A marketing availability claim is not evidence of delivered availability.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## RSK-01 · Risk assessment with change and fraud analysis\n\n**Domain:** Governance · **Owner:** Risk owner · **Frequency:** Annually and material change\n\n**Supporting references:** CC3.1, CC3.2, CC3.3, CC3.4, CC9.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Risk treatment overlooks insider misuse, dependency failures or new data flows.\n\n**Population:** Service assets, threat scenarios, suppliers and planned changes\n\n**Proposed implementation:** Define objectives and risk thresholds. Assess inherent and residual risk, including fraud and tenant isolation. Reassess after expansion, acquisition or incidents.\n\n**Design test:** Inspect scoring rules and scenario coverage; trace high risks to treatment owners.\n\n**Operating test:** Inspect the approved assessment, change-triggered reassessments and treatment follow-through.\n\n**Evidence:** Risk register; Threat model; Treatment approvals; Change assessments.\n\n**Automation:** Human review.\n\n**Limits:** Risk scoring is a prioritization convention, not a calculated probability of loss.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## MON-01 · Independent controls evaluation and issue escalation\n\n**Domain:** Governance · **Owner:** Assurance lead · **Frequency:** Monthly\n\n**Supporting references:** CC4.1, CC4.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** The dashboard appears healthy while control evidence is absent or unreliable.\n\n**Population:** All scoped controls and outstanding findings\n\n**Proposed implementation:** Review control design, test results, unknowns and aging issues independently of operation. Escalate repeated deficiencies to oversight.\n\n**Design test:** Confirm review criteria, escalation triggers and reviewer independence.\n\n**Operating test:** Trace monthly review decisions to evidence, tickets and independently verified closure.\n\n**Evidence:** Review packs; Evaluation workpapers; Escalations; Retest records.\n\n**Automation:** Human review.\n\n**Limits:** A native compliance score excludes human controls and unrecorded resources.\n\n**Reference:** [AWS Config rule evaluation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)\n\n## GOV-04 · Policies, procedures and control versioning\n\n**Domain:** Governance · **Owner:** Policy owner · **Frequency:** Annual review and every change\n\n**Supporting references:** CC5.1, CC5.2, CC5.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A documented objective has no executable procedure or deployed enforcement.\n\n**Population:** Policies, operating runbooks and automated test definitions\n\n**Proposed implementation:** Version policy requirements, operating procedures and test parameters together. Approve substantive changes and communicate effective dates.\n\n**Design test:** Walk a requirement from policy to operator instructions and technology enforcement.\n\n**Operating test:** Inspect policy reviews and change records; verify the effective version matches tested operation.\n\n**Evidence:** Policy history; Procedure approvals; Control specification; Release history.\n\n**Automation:** Human review.\n\n**Limits:** Publishing a policy alone cannot demonstrate that it operated.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## IAM-01 · Federated identity and MFA enforcement\n\n**Domain:** Identity · **Owner:** Identity engineering · **Frequency:** Continuous; quarterly review\n\n**Supporting references:** CC6.1, CC6.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Stolen credentials allow privileged access.\n\n**Population:** Workforce identities, Identity Center assignments and emergency IAM users\n\n**Proposed implementation:** Use an identity provider with MFA and conditional access, IAM Identity Center permission sets and short-lived role sessions. Maintain separately monitored emergency access.\n\n**Design test:** Review IdP enforcement, bypass paths, permission sets and session duration. Test denied and allowed logins in a sandbox.\n\n**Operating test:** Correlate sign-in records, role assumptions and exception approvals across the period.\n\n**Evidence:** IdP policy export; Identity Center assignments; Sign-in logs; Break-glass drills.\n\n**Automation:** API collection + human review.\n\n**Limits:** IAM credential reports omit federated users. A missing aws:MultiFactorAuthPresent value does not establish missing MFA for federation.\n\n**Reference:** [IAM MFA API access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html)\n\n## IAM-02 · Least privilege and access recertification\n\n**Domain:** Identity · **Owner:** System owner · **Frequency:** Quarterly and role change\n\n**Supporting references:** CC6.1, CC6.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Accumulated privilege enables data theft or unauthorized changes.\n\n**Population:** Human assignments, service roles, trust policies and resource grants\n\n**Proposed implementation:** Grant job-based permission sets and narrow workload roles. Review identity policies together with resource policies, trust, session policies, boundaries and organization restrictions.\n\n**Design test:** Test representative effective-access paths including cross-account assumptions and explicit denies.\n\n**Operating test:** Reconcile assignments to HR and role inventory. Inspect each review decision and evidence that revoked grants were removed.\n\n**Evidence:** Assignment inventory; Reviewer decisions; Policy simulation context; Removal tickets.\n\n**Automation:** API collection + human review.\n\n**Limits:** SCPs and permission boundaries limit grants; neither grants permissions. Policy simulations need context and do not prove every runtime path.\n\n**Reference:** [IAM policy evaluation logic](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html)\n\n## IAM-03 · Privileged and emergency access\n\n**Domain:** Identity · **Owner:** Security operations · **Frequency:** Per use; monthly review\n\n**Supporting references:** CC6.2, CC6.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Unreviewed root use bypasses routine separation of duties.\n\n**Population:** Root principals, privileged sessions and emergency credentials\n\n**Proposed implementation:** Remove root access keys, protect emergency identities with MFA, prohibit routine root work, require approval and alert on privileged use. Evaluate centralized root management where appropriate.\n\n**Design test:** Inspect custody, approval, monitoring and emergency recovery procedures.\n\n**Operating test:** Trace every emergency use to justification, approval, session logs and after-action review.\n\n**Evidence:** Root credential status; Privileged-use logs; Approvals; Drill results.\n\n**Automation:** Human review.\n\n**Limits:** A root MFA screenshot cannot demonstrate that privileged use was reviewed.\n\n**Reference:** [IAM MFA API access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html)\n\n## IAM-04 · Leaver access removal across every access path\n\n**Domain:** Identity · **Owner:** Identity operations · **Frequency:** Per termination; daily reconciliation\n\n**Supporting references:** CC6.2, CC6.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A departed worker retains usable access.\n\n**Population:** HR terminations joined to IdP, cloud assignments, IAM credentials and active sessions\n\n**Proposed implementation:** Set a one-hour lab SLA for all access paths. Disable IdP login, remove assignments, address active role sessions and native keys, and record final effective-access removal time.\n\n**Design test:** Inspect joins, immutable HR identifiers, time zones, retry handling and orphan-account detection.\n\n**Operating test:** Evaluate all terminations against access-path exports. Investigate missing joins and late removal; independently retest each path.\n\n**Evidence:** HR events; Assignment removal; Session/key invalidation records; Reconciliation report.\n\n**Automation:** Executable offline test.\n\n**Limits:** The executable check evaluates supplied final-removal timestamps. It does not query HR or revoke access. Identity Center logout alone does not end existing IAM role sessions.\n\n**Reference:** [Identity Center authentication sessions](https://docs.aws.amazon.com/singlesignon/latest/userguide/authconcept.html)\n\n## IAM-05 · Workload identity and secret lifecycle\n\n**Domain:** Identity · **Owner:** Platform engineering · **Frequency:** Continuous; quarterly review\n\n**Supporting references:** CC6.1, CC6.3, CC6.6. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Long-lived build secrets or broad trust let attackers assume production roles.\n\n**Population:** Runtime roles, CI identities, secrets and trust relationships\n\n**Proposed implementation:** Use ECS task roles and OIDC federation for CI. Constrain audience, repository and environment subjects. Store secrets in Secrets Manager and verify rotation consumers.\n\n**Design test:** Review role trust, secrets access, rotation design and prod/nonprod isolation.\n\n**Operating test:** Inspect role use, denied federation tests and successful rotation exercises without exposing secret values.\n\n**Evidence:** Trust policies; OIDC claims; Rotation metadata; Consumer validation.\n\n**Automation:** API collection + human review.\n\n**Limits:** No static access key does not imply a narrowly scoped role.\n\n**Reference:** [IAM OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)\n\n## DAT-01 · S3 public-access prevention\n\n**Domain:** Data protection · **Owner:** Storage owner · **Frequency:** Continuous; daily evaluation\n\n**Supporting references:** CC6.1, CC6.6, C1.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Public access exposes customer content.\n\n**Population:** Customer-data buckets and documented public delivery buckets\n\n**Proposed implementation:** Apply account and bucket public-access blocks, minimize resource policies, disable unnecessary ACLs and review access points and cross-account grants. Keep approved public delivery separate.\n\n**Design test:** Inspect effective policies, account settings and alternate access paths against classification.\n\n**Operating test:** Reconcile bucket inventory to current Config public-read results, investigate every exception and test external access safely.\n\n**Evidence:** Bucket inventory; Config evaluations; Public-access settings; Policy review.\n\n**Automation:** Executable Config evidence test.\n\n**Limits:** The live collector supports public-read prevention only. It does not test public write, tenant authorization or every access point.\n\n**Reference:** [Config S3 public-read managed rule](https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-public-read-prohibited.html)\n\n## DAT-02 · Encryption and key governance\n\n**Domain:** Data protection · **Owner:** Key custodian · **Frequency:** Continuous; quarterly review\n\n**Supporting references:** CC6.1, CC6.7, C1.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Sensitive data or cryptographic keys become accessible to unauthorized parties.\n\n**Population:** S3 objects, RDS storage, EBS volumes and relevant KMS keys\n\n**Proposed implementation:** Use customer-managed KMS keys where the data policy requires them. Review key policies, grants, deletion controls and rotation eligibility. Check existing objects as well as bucket defaults.\n\n**Design test:** Verify key access separation, service integration and rotation strategy for the specific key type.\n\n**Operating test:** Inspect key changes and denied-use tests; reconcile object inventory to required encryption and key IDs.\n\n**Evidence:** Encryption metadata; KMS policies and grants; Key change logs; Object inventory.\n\n**Automation:** API collection + human review.\n\n**Limits:** S3 encrypts new uploads by default. Bucket default SSE-KMS does not re-encrypt old objects; encryption headers and service delivery paths require deliberate design.\n\n**Reference:** [S3 server-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html)\n\n## DAT-03 · Transport protection and network boundaries\n\n**Domain:** Data protection · **Owner:** Network engineering · **Frequency:** Continuous; monthly review\n\n**Supporting references:** CC6.6, CC6.7. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Traffic is intercepted or untrusted networks reach sensitive services.\n\n**Population:** Public endpoints, VPC paths, database connections and external transfers\n\n**Proposed implementation:** Require HTTPS at public ingress, private application/database subnets, restrictive security groups and scoped endpoints. Enforce database TLS and controlled egress.\n\n**Design test:** Review path diagrams, endpoint policies, listener settings and TLS clients.\n\n**Operating test:** Test blocked paths and plaintext requests; inspect rule changes and certificate renewal evidence.\n\n**Evidence:** Network diagrams; Listener/SG exports; Connectivity tests; TLS test results.\n\n**Automation:** API collection + human review.\n\n**Limits:** A private subnet does not by itself prevent exfiltration or enforce tenant isolation.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## DAT-04 · Confidential data retention and disposal\n\n**Domain:** Data protection · **Owner:** Data owner · **Frequency:** Monthly and on deletion request\n\n**Supporting references:** CC6.5, CC6.7, C1.1, C1.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Data persists beyond agreed retention or disposal destroys required evidence.\n\n**Population:** Customer content, replicas, logs, exports, backups and keys\n\n**Proposed implementation:** Maintain classification and retention rules. Track deletion through replicas and backup expiration, apply legal-hold exceptions and document custody for physical disposal inherited from AWS.\n\n**Design test:** Inspect deletion paths, retention conflicts and customer commitments.\n\n**Operating test:** Trace selected deletion events to application records, storage changes and backup expiration; verify legal holds are authorized.\n\n**Evidence:** Classification register; Deletion workflow; Lifecycle configs; Disposal verification.\n\n**Automation:** Human review.\n\n**Limits:** Deleting a live object does not delete older versions, locked evidence or backup copies.\n\n**Reference:** [S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)\n\n## APP-01 · Tenant isolation and data-flow authorization\n\n**Domain:** Application · **Owner:** Application security · **Frequency:** Every release and quarterly\n\n**Supporting references:** CC6.1, CC6.6, CC6.7. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A valid customer reads or writes another tenant’s content.\n\n**Population:** API routes, worker jobs, signed URLs and customer-data paths\n\n**Proposed implementation:** Derive tenant identity server-side, scope every read/write, separate worker privileges and bind signed URLs to authorized objects. Document trust boundaries and data sinks.\n\n**Design test:** Inspect authorization design across ingress, application, storage, queues and export paths.\n\n**Operating test:** Run cross-tenant positive/negative tests and trace a canary through application logs, CloudTrail data events and the evidence store.\n\n**Evidence:** Data-flow diagram; Authorization tests; Canary trace; Remediation verification.\n\n**Automation:** Human review.\n\n**Limits:** IAM encryption controls cannot prove application-layer tenant isolation.\n\n**Reference:** [CloudTrail data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\n\n## APP-02 · Controlled uploads and data ingress\n\n**Domain:** Application · **Owner:** Application owner · **Frequency:** Per upload and release\n\n**Supporting references:** CC6.8, CC7.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Malicious content or unsafe components execute in the service.\n\n**Population:** Untrusted files, dependencies, containers and import jobs\n\n**Proposed implementation:** Validate types and size, scan untrusted content, quarantine failures and restrict execution permissions. Apply dependency and container scanning before promotion.\n\n**Design test:** Inspect bypass handling and quarantine isolation.\n\n**Operating test:** Test rejected content and inspect scan failures, promotion decisions and dependency exceptions.\n\n**Evidence:** Scan records; Quarantine tests; Build gates; Exception approvals.\n\n**Automation:** Human review.\n\n**Limits:** A scan enabled setting does not establish complete input coverage.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## OPS-01 · Logging coverage and delivery integrity\n\n**Domain:** Operations · **Owner:** Platform security · **Frequency:** Continuous; daily health review\n\n**Supporting references:** CC2.1, CC7.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Actions cannot be reconstructed because events were never recorded or delivered.\n\n**Population:** Organization accounts, enabled regions, required event types and log destinations\n\n**Proposed implementation:** Centralize an organization trail, management events and selected sensitive data events in a log account. Enable digest files, restrictive access and delivery alarms. Record excluded events.\n\n**Design test:** Review account/region selectors, key/bucket permissions, digest handling and retention.\n\n**Operating test:** Trace generated canary events end to end; check delivery errors, event latency, validation results and health alerts throughout the period.\n\n**Evidence:** Selectors; Trail status; Canary traces; Digest validation; Delivery alarms.\n\n**Automation:** API collection + human review.\n\n**Limits:** CloudTrail event history covers recent management activity. A trail enabled result alone proves neither data-event coverage nor delivery.\n\n**Reference:** [CloudTrail data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\n\n## OPS-02 · Detection and accountable alert response\n\n**Domain:** Operations · **Owner:** Security operations · **Frequency:** Continuous; weekly triage review\n\n**Supporting references:** CC7.2, CC7.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Threat findings are generated but nobody assesses them.\n\n**Population:** GuardDuty, Security Hub CSPM, application alerts and routed findings\n\n**Proposed implementation:** Define severity routing, owner acknowledgment targets and escalation. Feed GuardDuty and application detections to the response queue and monitor the routing pipeline.\n\n**Design test:** Generate safe sample findings and verify every expected destination and escalation rule.\n\n**Operating test:** Trace the alert population to acknowledgments, analysis, dispositions and SLA breaches.\n\n**Evidence:** Detector settings; Alert exports; Triage tickets; Routing tests.\n\n**Automation:** API collection + human review.\n\n**Limits:** GuardDuty threat detection and Security Hub posture checks serve different purposes. Finding suppression is not remediation.\n\n**Reference:** [GuardDuty findings](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html)\n\n## OPS-03 · Vulnerability management and verified remediation\n\n**Domain:** Operations · **Owner:** Service engineering · **Frequency:** Daily intake; weekly review\n\n**Supporting references:** CC7.1, CC7.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Known vulnerabilities remain reachable in production.\n\n**Population:** Deployed images, EC2 instances, Lambda packages and dependency inventories\n\n**Proposed implementation:** Use Inspector and build scanning; set risk-based deadlines that consider exposure and exploitability. Track exceptions with expiry and compensating controls.\n\n**Design test:** Reconcile deployed assets to supported scanners and verify deadline rules.\n\n**Operating test:** Trace findings to patched deployment digests and fresh rescans; preserve aged and accepted failures.\n\n**Evidence:** Asset/scanner reconciliation; Findings; Patch tickets; Rescan evidence.\n\n**Automation:** API collection + human review.\n\n**Limits:** A critical-CVE count ignores unscanned assets. A closed ticket without a rescan does not prove correction.\n\n**Reference:** [Inspector findings](https://docs.aws.amazon.com/inspector/latest/user/findings-managing.html)\n\n## OPS-04 · Incident response and lessons learned\n\n**Domain:** Operations · **Owner:** Incident commander · **Frequency:** Per incident; semiannual exercise\n\n**Supporting references:** CC7.3, CC7.4, CC7.5. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Teams fail to contain, notify or recover during an incident.\n\n**Population:** Security events, incidents, communications and recovery actions\n\n**Proposed implementation:** Define severity, command roles, legal/customer communication, forensic custody, containment and recovery runbooks. Exercise a credential compromise with customer-data impact.\n\n**Design test:** Walk through escalation and decision authority including out-of-hours coverage.\n\n**Operating test:** Inspect the incident population, a tabletop and actual remediation actions with verified completion.\n\n**Evidence:** Incident timeline; Exercise packet; Custody log; After-action register.\n\n**Automation:** Human review.\n\n**Limits:** Tabletop attendance does not establish that technical recovery succeeds.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## CHG-01 · Independent approval tied to the deployed commit\n\n**Domain:** Change management · **Owner:** Release owner · **Frequency:** Every production deployment\n\n**Supporting references:** CC8.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Self-approved or unreviewed code reaches production.\n\n**Population:** Production deployment events joined to PRs, reviews and immutable commit IDs\n\n**Proposed implementation:** Protect branches and release environments, require an independent authorized reviewer, bind approval to the deployed SHA and control emergency paths. Use OIDC for AWS deployment roles.\n\n**Design test:** Inspect bypass rights, approval freshness after commits and actor authorization.\n\n**Operating test:** Reconcile every deployment to its exact SHA, approval before deployment, independent reviewer and successful required checks.\n\n**Evidence:** Deployment events; Commit approvals; Branch rules; CI check exports.\n\n**Automation:** Executable offline test.\n\n**Limits:** The executable test uses normalized exports. It does not query GitHub, check review dismissal policy or prove all deployments were exported.\n\n**Reference:** [IAM OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)\n\n## CHG-02 · Infrastructure policy gates and drift\n\n**Domain:** Change management · **Owner:** Platform engineering · **Frequency:** Every change; daily drift review\n\n**Supporting references:** CC5.2, CC7.1, CC8.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Approved infrastructure differs from deployed state or violates a baseline.\n\n**Population:** Terraform/CloudFormation plans, deployed infrastructure and break-glass changes\n\n**Proposed implementation:** Review plans and apply policy checks for public exposure, encryption and logging. Pin tool versions, capture applied plan hashes and route out-of-band changes for review.\n\n**Design test:** Inspect rule coverage, bypass authority and false-negative fixtures.\n\n**Operating test:** Trace plans to approvals, deployments and Config drift. Reconcile emergency changes to retrospective review.\n\n**Evidence:** Plan hashes; Policy results; Apply records; Drift tickets.\n\n**Automation:** API collection + human review.\n\n**Limits:** A passing plan does not prove the live resource remained configured correctly.\n\n**Reference:** [AWS Config rule evaluation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)\n\n## CHG-03 · Secure development and dependency provenance\n\n**Domain:** Change management · **Owner:** Engineering lead · **Frequency:** Every release\n\n**Supporting references:** CC6.8, CC8.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A compromised dependency or build produces an unsafe release.\n\n**Population:** Repositories, dependencies, images, tests and deployment artifacts\n\n**Proposed implementation:** Threat-model major features, review code, run security tests and dependency scans, and promote immutable signed or verified artifacts. Restrict build role and repository administration.\n\n**Design test:** Review trust boundaries from source to registry to runtime and required security gates.\n\n**Operating test:** Inspect release samples across teams and period; verify artifact digest and gate completion at deployment.\n\n**Evidence:** Threat models; SBOMs; Scan results; Artifact provenance; Release logs.\n\n**Automation:** Human review.\n\n**Limits:** A signature authenticates a producer; it does not prove secure code or correct configuration.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## RES-01 · Backup coverage and protected recovery points\n\n**Domain:** Resilience · **Owner:** Backup owner · **Frequency:** Daily; monthly inventory review\n\n**Supporting references:** CC7.5, A1.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Ransomware or failure destroys both primary data and recovery copies.\n\n**Population:** RDS, S3 and other committed recovery assets across accounts\n\n**Proposed implementation:** Map asset-specific RPO to backup cadence and retention. Use separate recovery custody, scoped permissions and cross-account/region copies where justified. Validate KMS access and protected vault policy.\n\n**Design test:** Inspect protected assets, failed jobs, deletion rights and recovery dependencies.\n\n**Operating test:** Reconcile source assets to successful recovery points within approved RPO; investigate failed and missing jobs.\n\n**Evidence:** Backup plans; Protected-resource inventory; Job history; Vault/key policies.\n\n**Automation:** API collection + human review.\n\n**Limits:** RDS Multi-AZ supports availability; it does not replace a recovery copy.\n\n**Reference:** [AWS Backup restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.html)\n\n## RES-02 · Restore testing against RTO and RPO\n\n**Domain:** Resilience · **Owner:** Recovery owner · **Frequency:** Quarterly and major architecture change\n\n**Supporting references:** CC7.5, A1.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Backups exist but recovery misses customer commitments or restores unusable data.\n\n**Population:** Scheduled restore exercises for each critical service and dependency\n\n**Proposed implementation:** Restore into an isolated environment, validate application/data integrity, measure recovery from disruption start and measure recovered data lag against RTO/RPO. Record cleanup.\n\n**Design test:** Review test realism, start/finish definitions and required dependency validation.\n\n**Operating test:** Compare each exercise to four-hour RTO and one-hour RPO lab thresholds; inspect application sign-off and retest late or incomplete exercises.\n\n**Evidence:** Restore job; Disruption/recovery times; Recovered-data timestamp; Validation sign-off.\n\n**Automation:** Executable offline test.\n\n**Limits:** The executable test evaluates provided measurements and validation status. It does not restore AWS resources.\n\n**Reference:** [AWS Backup restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.html)\n\n## RES-03 · Availability capacity and failover readiness\n\n**Domain:** Resilience · **Owner:** Site reliability · **Frequency:** Monthly; semiannual failover\n\n**Supporting references:** A1.1, A1.2, A1.3. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Capacity exhaustion or dependency failure interrupts the service.\n\n**Population:** Committed service paths, quotas, multi-AZ dependencies and capacity metrics\n\n**Proposed implementation:** Set SLOs tied to commitments, monitor saturation and quotas, distribute critical paths across availability zones and document region-recovery tradeoffs.\n\n**Design test:** Inspect single points of failure, capacity assumptions and alert thresholds.\n\n**Operating test:** Inspect load/failover tests, response to saturation alarms and measured restoration within objectives.\n\n**Evidence:** Capacity forecasts; SLO reports; Load tests; Failover reports.\n\n**Automation:** Human review.\n\n**Limits:** An architectural multi-AZ label cannot demonstrate successful failover.\n\n**Reference:** [RDS Multi-AZ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)\n\n## VND-01 · Supplier assurance and AWS report review\n\n**Domain:** Third parties · **Owner:** Vendor risk owner · **Frequency:** At onboarding and annually\n\n**Supporting references:** CC9.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Inherited controls or supplier dependencies fail without a customer response.\n\n**Population:** AWS, identity provider, source host and critical monitoring suppliers\n\n**Proposed implementation:** Tier vendors, review current SOC reports and contractual safeguards, identify report exceptions and map relevant complementary user entity controls to internal owners.\n\n**Design test:** Inspect service/region coverage, report period, scope and carve-outs.\n\n**Operating test:** Review annual packets and follow-up; trace AWS user controls to the service’s own evidence.\n\n**Evidence:** Vendor inventory; Restricted report-review memo; CUEC mapping; Follow-up actions.\n\n**Automation:** Human review.\n\n**Limits:** AWS SOC 2 does not attest to this SaaS configuration. A bridge letter is a management statement and does not extend the audited period.\n\n**Reference:** [AWS SOC FAQ](https://aws.amazon.com/compliance/soc-faqs/)\n\n## VND-02 · Business disruption and dependency mitigation\n\n**Domain:** Third parties · **Owner:** Service owner · **Frequency:** Annual exercise and dependency change\n\n**Supporting references:** CC9.1, CC9.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A supplier failure or staff loss interrupts service without an alternative.\n\n**Population:** Critical supplier outages, key staff absence and communications\n\n**Proposed implementation:** Document fallback, dependency recovery, customer notification and alternate operational coverage. Assess insurance and other risk-transfer choices as part of risk treatment.\n\n**Design test:** Inspect dependency scenarios, responsibilities and realistic fallback assumptions.\n\n**Operating test:** Exercise a supplier outage and inspect actions to remove unworkable dependencies.\n\n**Evidence:** Dependency map; Continuity exercise; Treatment decisions.\n\n**Automation:** Human review.\n\n**Limits:** Risk transfer does not remove the need to meet the service’s own commitments.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## PHY-01 · Physical responsibility boundary\n\n**Domain:** Third parties · **Owner:** Facilities and vendor risk · **Frequency:** Annual; per personnel change\n\n**Supporting references:** CC6.4, CC6.5. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Physical custody is assumed to be entirely inherited even for employee devices.\n\n**Population:** AWS facilities plus workforce endpoints and any customer-operated locations\n\n**Proposed implementation:** Inherit AWS datacenter physical controls through relevant report review. Maintain endpoint inventory, device access, return and disposal procedures for workforce assets.\n\n**Design test:** Separate provider facilities from customer-controlled devices and premises.\n\n**Operating test:** Inspect report review and selected device return/disposal records.\n\n**Evidence:** AWS report-review memo; Endpoint inventory; Device return records.\n\n**Automation:** Human review.\n\n**Limits:** AWS datacenter assurance does not cover a contractor laptop.\n\n**Reference:** [AWS shared responsibility](https://aws.amazon.com/compliance/shared-responsibility-model/)\n\n## EVD-01 · Evidence custody and data minimization\n\n**Domain:** Assurance engineering · **Owner:** Evidence custodian · **Frequency:** Each collection; monthly access review\n\n**Supporting references:** CC2.1, CC4.1, CC5.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Evidence can be overwritten, detached from its source or expose customer secrets.\n\n**Population:** Raw exports, test outputs, manifests and restricted audit artifacts\n\n**Proposed implementation:** Capture UTC observation/collection times, scope and logic hashes, raw response pointers and approvals. Store protected evidence separately from public synthetic examples; restrict retention and access.\n\n**Design test:** Inspect chain of custody, tamper detection, access restrictions and redaction method.\n\n**Operating test:** Recompute manifests, inspect access history and trace output to raw input and reviewed logic.\n\n**Evidence:** Hash manifest; Run metadata; Custody log; Evidence access review.\n\n**Automation:** Executable evidence packaging.\n\n**Limits:** A hash detects a changed file only if the manifest is trusted. It is not a signature or proof of source authenticity.\n\n**Reference:** [S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)\n\n## EVD-02 · Monitor the monitoring pipeline\n\n**Domain:** Assurance engineering · **Owner:** Monitoring owner · **Frequency:** Every scheduled run\n\n**Supporting references:** CC4.1, CC7.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A stopped collector displays an old passing result indefinitely.\n\n**Population:** Expected collections by account, region, control and cadence\n\n**Proposed implementation:** Compare scheduled runs to an independent heartbeat inventory, alert on missed/failing jobs, monitor evidence age and reconcile expected to observed resources. Assign unknowns to owners.\n\n**Design test:** Seed denied APIs, truncated pages, malformed values and missed schedules; verify alarms and escalation.\n\n**Operating test:** Inspect missed-run population, freshness results and recovery tickets; verify the detector still runs when the collector fails.\n\n**Evidence:** Schedule inventory; Heartbeat records; Seeded-fault results; Alert tickets.\n\n**Automation:** API collection + human review.\n\n**Limits:** A job-success signal does not prove a complete extract.\n\n**Reference:** [AWS Config rule evaluation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)\n\n## EXT-01 · Processing completeness and accuracy\n\n**Domain:** Optional extensions · **Owner:** Data processing owner · **Frequency:** Every batch and release\n\n**Supporting references:** PI1.1, PI1.2, PI1.3, PI1.4, PI1.5. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** A job silently drops, duplicates or corrupts customer records.\n\n**Population:** Input manifests, processing jobs, outputs and stored results\n\n**Proposed implementation:** If processing integrity enters scope, define accepted inputs, processing specifications, reconciliation totals, retry/idempotency and output/storage checks. Reject bad input and route discrepancies.\n\n**Design test:** Inspect completeness and correctness requirements at input, processing, output and storage boundaries.\n\n**Operating test:** Trace input identifiers to output counts/hashes; seed duplicates, missing records and unauthorized transformations.\n\n**Evidence:** Input/output manifests; Reconciliation totals; Job error records; Validation approvals.\n\n**Automation:** Human review.\n\n**Limits:** Checksums alone do not prove business-level correctness. This extension is outside the selected examination scenario.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## EXT-02 · Privacy purpose, notice and choice\n\n**Domain:** Optional extensions · **Owner:** Privacy owner · **Frequency:** At collection and purpose change\n\n**Supporting references:** P1.1, P2.1, P3.1, P3.2. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Personal information is collected without appropriate notice, authority or choice.\n\n**Population:** Personal-information purposes, notices, consent and collection channels\n\n**Proposed implementation:** If Privacy enters scope, inventory purposes, define notices and lawful/contractual collection conditions, implement choice where applicable, and record valid consent decisions.\n\n**Design test:** Inspect notice/choice design and alignment with actual collection flows.\n\n**Operating test:** Trace a personal-information collection to current notice, relevant choice and approved purpose.\n\n**Evidence:** Purpose inventory; Notice history; Consent/choice records.\n\n**Automation:** Human review.\n\n**Limits:** Confidentiality protects designated information; Privacy includes obligations across the personal-information lifecycle. This scenario excludes Privacy attestation.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## EXT-03 · Privacy lifecycle and individual rights\n\n**Domain:** Optional extensions · **Owner:** Privacy operations · **Frequency:** Per request; quarterly monitoring\n\n**Supporting references:** P4.1, P4.2, P4.3, P5.1, P5.2, P6.1, P6.2, P6.3, P6.4, P6.5, P6.6, P6.7, P7.1, P8.1. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Individuals cannot exercise applicable rights and onward disclosures escape monitoring.\n\n**Population:** Personal-information use, retention, rights, disclosures, quality and complaints\n\n**Proposed implementation:** Define purpose-limited use, retention/disposal, identity verification for requests, access/correction, third-party sharing terms, breach communications and complaint handling.\n\n**Design test:** Trace the lifecycle inventory to rights/disclosure procedures and monitoring responsibilities.\n\n**Operating test:** Inspect requests, corrections, deletion/retention decisions, third-party authorizations and complaint resolution against stated deadlines.\n\n**Evidence:** Rights register; Disclosure records; Correction records; Complaint monitoring.\n\n**Automation:** Human review.\n\n**Limits:** This extension needs jurisdiction-specific legal review; a SOC 2 privacy scope does not establish blanket legal compliance.\n\n**Reference:** [AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\n## AST-01 · Asset inventory and scoped population reconciliation\n\n**Domain:** Assurance engineering · **Owner:** Asset owner · **Frequency:** Daily and on account onboarding\n\n**Supporting references:** CC2.1, CC6.1, CC6.5. Supports the listed criteria in this system; partial, judgment-based mapping, not criterion equivalence.\n\n**Risk:** Unknown assets escape security controls and audit populations.\n\n**Population:** Accounts, regions, global-service identities, resources and owners\n\n**Proposed implementation:** Reconcile Organizations, approved region lists, workload inventories and service-native exports. Track owner, classification and lifecycle including retired assets. Review gaps before excluding them.\n\n**Design test:** Compare inventory sources and inspect discovery limits, permissions, pagination and global-service handling.\n\n**Operating test:** Inspect daily differences and onboarding records; trace newly discovered and retired assets to required controls and disposal decisions.\n\n**Evidence:** Account inventory; Regional resource exports; Reconciliation records; Asset lifecycle tickets.\n\n**Automation:** API collection + human review.\n\n**Limits:** Config only sees supported recorded resources. An inventory needs independent sources and explicit completeness checks.\n\n**Reference:** [AWS Config rule evaluation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)\n"
+    },
+    {
+      "id": "05",
+      "title": "Automation lab: four narrow assertions with traceable evidence",
+      "content": "# Automation lab: four narrow assertions with traceable evidence\n\nThe offline lab evaluates normalized exports. It does not claim to query HR, IdP, GitHub or AWS Backup. The optional live adapter reads existing AWS Config observations for customer-listed S3 buckets. It creates no infrastructure and performs no remedial action.\n\n## 1. Establish the approved population\n\nInspect [demo-scope.json](../data/demo-scope.json). It lists 21 expected control/resource pairs, applicability, approved exclusions and parameters. Inspect [demo-snapshot.json](../data/demo-snapshot.json), which contains 20 observed records. A missing expected bucket is deliberately seeded. Populations are independent of successful results: starting from an API response alone hides records the collector missed.\n\nAll lab observations belong to the end of the illustrative July–September period. Freeze evaluation time at `2026-09-30T15:00:00Z` for reproducibility. Current-time evaluation will eventually make the fixture stale, as intended. `complete: true` means source export completion was declared, not that missing expected identities become compliant.\n\n## 2. Execute and inspect\n\n```bash\npython3 -m unittest discover -s tests -v\npython3 scripts/evaluate.py --as-of 2026-09-30T15:00:00Z --out evidence/local-run\npython3 scripts/verify_evidence.py evidence/local-run\n```\n\nResults: 5 PASS, 8 FAIL, 7 UNKNOWN, 1 approved exclusion. Denominator: 20 applicable items; 5 / 20 = 25%. Unknowns stay in the denominator. There are **four executable assertion types**, not 36 fully automated controls. Use a new output directory each time. `--strict` returns exit 2 for failures/unknowns after writing artifacts; this is useful in a gate and deliberately fails the baseline fixture.\n\n| Control | Executable assertion | Still requires independent work |\n|---|---|---|\n| DAT-01 | Current, conclusive Config public-read evaluation for each expected bucket | Full bucket/access-point policy review, public write, tenant access, population discovery |\n| IAM-04 | Verified all-path removal within one hour of termination | Source extraction/join validation, active session handling, actual effective-access testing |\n| CHG-01 | Exact deployed SHA, authorized independent approval before deployment, checks passed | Deployment-export completeness, branch bypasses, dismissed reviews, emergency process |\n| RES-02 | Validated recovery within four hours, recovered data within one-hour lag | Real restore, timing source validation, dependency coverage, cleanup and sign-off |\n\nTimestamps require a timezone offset. Boolean strings such as `\"true\"` are not accepted as proof. Duplicate identities or unexpected items invalidate extraction reconciliation. Scope hash changes invalidate the associated snapshot. Future/stale observations are UNKNOWN. Missing evidence is UNKNOWN; a demonstrated failure can survive a different missing condition on the same valid record. A missing global extract contract makes the run unreliable.\n\n## 3. Build and validate a source adapter\n\nFor HR/IdP, use stable employee IDs and enumerate cloud assignments, native users, keys and active role sessions. For releases, use immutable deployment events and exact commit IDs, not just PR numbers. For restore exercises, capture disruption start, validated service recovery and recovered-data timestamp. Keep raw extracts and join diagnostics in restricted custody. Before production reliance, compare automation with a manual review and investigate every disagreement.\n\nKnown-fault tests exercise self-approval, old-SHA approval, late approval, late leavers, orphan access, bad timestamps, string booleans, missed resources, stale observations, unknown native states, independent RTO/RPO failures, denied APIs, repeated pagination tokens and tampered manifests. Tests prove those cases, not the entire service.\n\n## 4. Optional live AWS Config collection\n\nUse an existing authorized sandbox/account. Install only optional collector dependencies in a virtual environment:\n\n```bash\npython3 -m venv .venv\n. .venv/bin/activate\npython3 -m pip install -r requirements-live.txt\ncp data/aws-scope.example.json data/aws-scope.local.json\n```\n\nEdit `aws-scope.local.json`: replace account ID, approved owner, region, exact Config rule name and expected bucket list. Validate scope independently; this adapter cannot discover your organization. The reviewed rule source is `S3_BUCKET_PUBLIC_READ_PROHIBITED`, configured and active for the intended S3 resources. AWS Config recording and evaluations must already exist. Review the proposed [read-only policy](../data/collector-policy.example.json) against current AWS authorization semantics and your environment. Wildcard resource scope here requires a role restricted to the approved account with no mutation permissions; do not attach broad administrator access.\n\nAuthenticate with your existing named profile, then collect:\n\n```bash\npython3 scripts/collect_aws.py --profile audit-read --scope data/aws-scope.local.json --out evidence/live-collection-001\npython3 scripts/evaluate.py --scope data/aws-scope.local.json --input evidence/live-collection-001/snapshot.json --out evidence/live-evaluation-001\npython3 scripts/verify_evidence.py evidence/live-evaluation-001\n```\n\nThe adapter verifies the caller account, Config rule source/state and recorder health. It follows all continuation tokens, never filters away inconclusive native states and retains raw responses. For conservative freshness it uses the native ordering timestamp, which describes the source event or configuration snapshot that triggered evaluation; it also retains rule-invoked and recorded times. A denied read, missing rule result or unhealthy recorder is explicit collection-error evidence. Account mismatch stops collection; evaluation also verifies account and region on the snapshot and each record.\n\nThe evaluation bundle includes normalized input, scope, logic, JSON/CSV results and hashes. The separate collection bundle contains raw responses, normalized snapshot, scope, collector source, SDK versions and its own manifest. Verify both directories and retain both in restricted custody; the evaluation bundle does **not** automatically copy `raw.json`. Git ignores `evidence/live*/` and local scope files; inspect your outgoing files before publishing. The website embeds only checked-in synthetic evidence.\n\n## 5. Seed a failure and prove correction\n\nCopy the demo input and keep the original baseline. Change a correct release to a different approved SHA, evaluate into a new output directory and verify the specific FAIL. Correct the SHA and evaluate again. This proves a narrow logic transition. To close a real finding, an independent reviewer needs new source evidence and a test of the actual deployed control. Neither editing a fixture nor a later PASS erases the original period deviation.\n\n## 6. Validate custody\n\nInspect `manifest.json`, then change a copy of `results.json` and rerun the verifier. Verification must fail. A digest is useful only relative to a trusted manifest. Store authoritative manifests under restricted access or signed/protected custody; local hash files alone are not source authentication or immutable storage.\n"
+    },
+    {
+      "id": "06",
+      "title": "Evidence quality, population testing and custody",
+      "content": "# Evidence quality, population testing and custody\n\n## The evidence contract\n\nEvery result needs control/test version, scope hash, resource identity, state, reason, observation time, collection time and source pointer. Run metadata adds logic/input hashes, expected/observed counts and evaluation time. Keep source evidence and its report filters, not only a rendered green status. Retain original exceptions and later retests as separate records.\n\nObservation time describes the source event or state being tested; collection time is when the export was obtained; evaluation time is when test logic ran. A newly collected old Config result is still old evidence. Config's ordering timestamp describes the event or snapshot that triggered evaluation, its rule-invoked time describes the rule evaluation, and its result-recorded time describes persistence of the result. The adapter retains all three and uses ordering time conservatively for freshness. Document which timestamp each assertion uses and why.\n\n## Validate information produced by the entity\n\nValidate scope filters, date/time bounds, pagination, joins, duplicates, row counts and report logic. Reconcile HR terminations to HR source totals; releases to the production deployment log; assets to Organizations plus service-native inventories; restore schedules to completed exercise evidence. Source exports that omit failures are not a complete population.\n\nValidate account and region identity. A Config aggregator helps query recorded resources but does not discover unsupported/unrecorded assets by itself. Some global resources have recording-location considerations. Reconcile disabled regions, newly enrolled accounts and denied read scopes explicitly. Empty responses, timeouts and unexpected native states must be visible.\n\n## Period coverage and sampling\n\nThe checked-in snapshot is **one observation at 2026-09-30**. It cannot prove three-month operating effectiveness. Build a control calendar and expected-run ledger. For daily controls, reconcile expected days/runs with collected records; for event-based controls, reconcile every eligible event; for quarterly controls, inspect the review and follow-through. Retain effective versions of policies, logic and parameters throughout the period.\n\nFor a worked manual access review, imagine 12 privileged users at quarter-end: reconcile all 12 to assignments and HR, check all reviewer decisions and validate the revoked grants. For an illustrative release walkthrough, select early-, middle- and late-period deployments plus an emergency deployment from a reconciled release population. **These are teaching selections, not an auditor-approved sample size.** The CPA determines sample strategy based on risk, frequency, control reliance, population and judgment. Automated full-population output still needs validation of source completeness and logic/change controls.\n\n## Evidence storage design\n\nA restricted log/evidence account receives raw exports and manifests; a separate reviewer role reads them. Scope prefix/bucket/key policies, encryption rights and retention. Use S3 versioning and, where appropriate, carefully designed Object Lock retention. Governance and compliance modes have different override/deletion implications. Resolve legal hold, privacy deletion and retention conflicts before selecting settings. Prevent the operator from silently replacing accepted evidence.\n\nCloudTrail integrity validation needs digest delivery **and actual validation**. Enabling the setting does not prove the chain was checked. Preserve validation output and investigate missing logs/digests. Log integrity does not demonstrate events that were never selected for logging.\n\nPublic examples contain fictional identifiers. Raw provider reports, credentials, personal information, customer content and live access details stay restricted. Review redaction without severing critical correlations. Keep source-to-redacted transformations reproducible and access-controlled.\n\n## PBC index\n\n[PBC requests](../data/pbc-requests.csv) connect request IDs to control IDs, period, source and review expectations. An auditor request tracker should also hold received date, custodian, restriction, version, reviewer, question status and links to the exact submitted artifacts. Never replace an old submitted artifact without retaining history and notifying the relevant reviewer.\n\n## Readiness versus test conclusion\n\nShow catalog controls, executable assertions, items observed, missing evidence, failed tests, approved exclusions and aging findings separately. A 25% narrow-assertion pass rate does not mean the organization is 25% ready, and a future 100% would not imply a clean opinion. Management assesses readiness using design, period coverage, evidence quality and unresolved risk; the CPA independently evaluates the engagement.\n"
+    },
+    {
+      "id": "07",
+      "title": "Findings, root causes and corrective actions",
+      "content": "# Findings, root causes and corrective actions\n\nThe five findings below are scenario examples. Severity reflects service risk and evidence context, not a universal SOC 2 rating rule. Multiple deviations can share a root cause; evaluate extent across the full population.\n\n## F-01 · IAM-04 · High\n\n**Condition:** One termination retained effective access for 3 hours against the one-hour lab SLA.\n\n**Root-cause hypothesis:** The workflow disabled the IdP but omitted existing role sessions from the access-path join.\n\n**Impact:** A departed worker could still access AWS resources during the gap.\n\n**Owner / target:** Identity operations / 2026-10-15 (scenario).\n\n**Corrective action:** Add role-session handling, enforce short privileged sessions and validate every account assignment/native credential path.\n\n**Independent retest:** Use a synthetic leaver with an active session. Validate denial on each path and final removal within 60 minutes.\n\n**Status:** Open in baseline; proposed fix and retest plan only. Original period deviation remains in the evidence.\n\n## F-02 · DAT-01 · High\n\n**Condition:** customer-export has a NON_COMPLIANT public-read evaluation.\n\n**Root-cause hypothesis:** A migration copied a broad policy and had no post-migration access test.\n\n**Impact:** Customer export data may be externally readable; configuration evidence alone does not establish actual disclosure.\n\n**Owner / target:** Storage owner / 2026-10-08 (scenario).\n\n**Corrective action:** Remove the broad grant, enable required blocks, inspect access history and test read/write paths.\n\n**Independent retest:** Obtain a fresh Config evaluation and an independent negative external-access test with the correct request context.\n\n**Status:** Open. Accepted risk, if granted, would remain a failing result.\n\n## F-03 · CHG-01 · High\n\n**Condition:** deploy-03 used an approval for an earlier commit; deploy-02 was self-approved.\n\n**Root-cause hypothesis:** The release join used PR number instead of immutable deployed SHA, and did not compare actor identities.\n\n**Impact:** Unreviewed changes can reach the production service.\n\n**Owner / target:** Release owner / 2026-10-12 (scenario).\n\n**Corrective action:** Bind approvals to exact SHA, require independent authorized review and close administrator bypass paths.\n\n**Independent retest:** Seed a post-approval commit and a self-approval; both must fail while an authorized exact-SHA approval passes.\n\n**Status:** Open. A later successful deployment cannot erase the prior exception.\n\n## F-04 · RES-02 · High\n\n**Condition:** exercise-02 took 5 hours; exercise-03 recovered data 2 hours behind disruption time.\n\n**Root-cause hypothesis:** The recovery procedure omitted startup dependencies and used an insufficient backup schedule.\n\n**Impact:** The service can miss its four-hour recovery or one-hour data-loss objective.\n\n**Owner / target:** Recovery owner / 2026-10-22 (scenario).\n\n**Corrective action:** Fix the dependency order and backup cadence, then repeat an application-validated exercise.\n\n**Independent retest:** Measure from disruption start to validated service recovery; validate recovered-data timestamp and cleanup.\n\n**Status:** Open pending a complete exercise and independent review.\n\n## F-05 · EVD-02 · Medium\n\n**Condition:** archive bucket evidence is stale; one expected bucket has no Config evaluation.\n\n**Root-cause hypothesis:** The team watched job exit status without reconciling the expected bucket population or evaluation age.\n\n**Impact:** Two scoped items have UNKNOWN assurance even if the job succeeds.\n\n**Owner / target:** Monitoring owner / 2026-10-10 (scenario).\n\n**Corrective action:** Add scope reconciliation and observation-age checks with independently scheduled alerts.\n\n**Independent retest:** Drop an expected record and advance observation age past 24 hours; verify UNKNOWN and escalation.\n\n**Status:** Open; missing coverage is not treated as compliant.\n\n## Worked communication: executive briefing\n\n**Illustrative 2026-10-03 review.** The 36-control catalog is documented, while four narrow assertion types have been evaluated over an end-of-period snapshot. Of 21 expected items, 20 are applicable: 5 pass, 8 fail and 7 lack sufficient reliable evidence. One approved public-document delivery exclusion is separate. Five findings remain open. These figures do not determine examination readiness or an audit opinion.\n\nThe main exposures are retained leaver access, potential bucket exposure, unreviewed releases and missed recovery objectives. Assign owners to correct the workflows and obtain independent retests; storage exposure warrants prompt investigation. Restore evidence coverage and the missing-bucket population before relying on dashboard summaries. Management should decide audit timing using the complete control/period evidence, not the last-day snapshot.\n\n## Worked communication: engineering handoff for F-03\n\nExpected: every production deployment has authorized independent approval for the exact deployed SHA before deployment, and successful required checks. Actual: deploy-02 shares deployer/approver identity; deploy-03 references an older approved SHA. Reproduce using the offline fixture and inspect the raw release join in the real source workflow. Replace PR-only joins, verify review authorization and prevent post-approval code changes from reusing stale approval. Retest normal, self-approved, changed-SHA and emergency paths. Preserve original events and inspect other affected deployments.\n\n## Closure procedure\n\n1. Confirm actual root cause with evidence, rather than treating the scenario hypothesis as a fact.\n2. Record proposed action, owner, target, dependencies and compensating measures.\n3. Implement under change control and assess whether similar resources/events are affected.\n4. Obtain new source evidence and an independent retest against the original objective.\n5. Record success/failure, reviewer approval and residual risk. Close only on supported correction.\n6. Retain the original failure and evaluate its impact on period effectiveness; later fixes do not rewrite history.\n\nFor distributed teams, use UTC event timestamps and an explicit owner/backup. Leave handoff notes containing condition, evidence link, current blocker and next decision. A completed ticket is a workflow state; the retest establishes whether the control now works.\n"
+    },
+    {
+      "id": "08",
+      "title": "Readiness and independent examination support",
+      "content": "# Readiness and independent examination support\n\n## Distinct deliverables and responsibilities\n\nReadiness work identifies gaps, validates controls and prepares management. A Type I engagement addresses a specified date; a Type II adds operating effectiveness throughout a specified period. Duration, sequencing, sample sizes, report timing and opinion depend on the engagement. Type I is not an obligatory prerequisite for every Type II engagement.\n\nManagement owns the system description, selected commitments, controls and assertion. A qualified independent CPA practitioner determines examination procedures and report conclusions. Engineers and assurance staff supply accurate evidence, answer walkthrough questions and remediate issues. This repository provides management-side examples only; it does not fabricate a CPA opinion.\n\n## System-description review scaffold\n\nUse [the system scope draft](02-system-scope.md) as a starting point. Validate against the AICPA Description Criteria with your practitioner: service type, principal commitments and requirements, system components, relevant controls, boundary, incidents, changes, subservice relationships, CUECs/CSOCs and exclusions. The Trust Services Criteria evaluate controls; Description Criteria evaluate how the system is described. A well-designed control matrix does not complete the description automatically.\n\n## Management assertion preparation scaffold\n\n- Identify legal service organization, system, selected categories and date/period.\n- Identify applicable Description Criteria and Trust Services Criteria.\n- Support claims about description presentation and suitability of control design.\n- For Type II, support claims about operating effectiveness throughout the specified period.\n- Explain relevant carved-out providers and expected complementary controls consistently with the description.\n- Confirm management responsibility, authority, known exceptions and material changes.\n\nThis is a preparation checklist, **not a signed assertion or licensed form**. Use the current practitioner-reviewed wording for an actual engagement. Do not sign a claim because automated configuration checks are green.\n\n## PBC and walkthrough protocol\n\nGive each request an ID, accountable custodian, scope/period, due date and restriction. Provide native exports and the validation workpaper. Walk through the actual process from trigger to completion, then show the failure path. For leavers, begin with HR events; for releases, begin with production deployment events; for backups, begin with the committed asset population. Track open auditor questions and clarify unsupported claims promptly.\n\nMaintain a submitted-evidence log and freeze versions. If new evidence changes a prior response, preserve the old version and communicate the correction. Review access to restricted auditor portals and avoid public repository links for confidential source material.\n\n## Supplier SOC report review workpaper\n\nRecord provider, service/region, report type, period, system boundary, opinion, relevant exceptions, carved-out dependencies and complementary controls. Compare covered period to your examination period. A bridge letter can add management context but cannot extend the CPA’s tested period. Map required user controls to named internal owners and actual test evidence. Determine whether gaps require additional work or a changed reliance conclusion with the practitioner.\n\nDo not reproduce AWS's restricted SOC 2 report or claim that reviewing it makes the SaaS attested. Service coverage and report terms need verification for the specific account architecture.\n\n## Report anatomy and follow-through\n\nA SOC 2 report commonly includes the independent service auditor’s report, management assertion, system description and, for Type II, tests of controls and results. Additional organization-provided information may be presented separately with clearly identified assurance limits. Restricted use and distribution terms matter.\n\nDistinguish individual test deviations from a modified opinion. Their effect depends on nature, cause, extent, compensating evidence and professional judgment. Discuss unresolved design/operation failures and subsequent events with management and the CPA rather than predicting the opinion from this project’s counts.\n\nAfter issuance, retain the report and evidence securely, communicate appropriate scope/period limitations to customers, track complementary user responsibilities and independently verify corrective actions. Continue operating controls; report issuance does not freeze the system or eliminate ongoing obligations.\n"
+    },
+    {
+      "id": "09",
+      "title": "AWS implementation and operational runbooks",
+      "content": "# AWS implementation and operational runbooks\n\nThese runbooks describe proposed work in an authorized sandbox/real program. They are not executed by the repository. Record account/region, expected results, observed outcomes, operator and reviewer. Use read-only collection by default; perform negative tests and changes only where authorized. AWS services and data events can incur charges; this project provisions none.\n\n## Identity and termination\n\n1. Map workforce IdP identities to Identity Center assignments and permission sets. Include native IAM users, access keys, emergency identities and third-party access.\n2. Validate MFA at the IdP and inspect bypasses. `aws:MultiFactorAuthPresent` is not a universal federated MFA signal; credential reports cover native IAM users rather than the entire workforce.\n3. At a termination event, stop new authentication, remove assignments and address existing temporary role sessions and native keys. Existing IAM role sessions can survive the portal session.\n4. Test whether each access path is actually denied and record the time effective access ends. Reconcile all terminated people against all paths, including missing joins.\n5. Inspect the collector’s own access. Do not let a read-only evidence role silently acquire deployment or key-use privileges.\n\nEffective access combines identity/resource policies, trust, boundaries, session policies and organization controls with request context. SCPs do not grant access and have important scope limits, including the management account and service-linked roles. Keep privileged work out of the management account and validate relevant exceptions.\n\n## Logging canary: demonstrate how data reaches evidence custody\n\n1. Enumerate accounts, regions and required management/data event selectors. Decide which sensitive S3 object operations need capture and record cost/volume tradeoffs.\n2. Generate a unique non-sensitive object canary and a representative management event using an authorized test identity. Retain event ID, resource, actor and UTC trigger time.\n3. Find the expected event in CloudTrail delivery, not just the console's recent event history. Verify selected fields survive normalization and redaction.\n4. Trace delivery to log archive, Athena (if used), evidence collector, test output and protected storage. Record latency, missing fields and correlation IDs.\n5. Test a broken route/permission in a sandbox and verify independent health alerts. A zero-row query without verified delivery is inconclusive.\n6. Enable log-file digests where appropriate and actually run integrity validation. Preserve the result and investigate gaps.\n\nRead-only diagnostic templates for an **existing scoped trail**:\n\n```bash\naws sts get-caller-identity --profile audit-read\naws cloudtrail get-trail-status --name YOUR_TRAIL_ARN --region us-east-1 --profile audit-read\naws cloudtrail get-event-selectors --trail-name YOUR_TRAIL_ARN --region us-east-1 --profile audit-read\naws configservice describe-configuration-recorder-status --region us-east-1 --profile audit-read\n```\n\nThe provided Config collector policy does not include these CloudTrail permissions; grant separately reviewed reads if needed. See [Athena query templates](../scripts/cloudtrail_queries.sql) and the documented schema/partition setup. Add partition predicates for your actual table. Querying root use or guardrail changes yields investigation leads, not automatic policy violations.\n\n## Data storage and keys\n\nValidate bucket and account public-access blocks, policies, ACL/Object Ownership settings and access-point paths together. The managed public-read rule is a narrow supporting assertion. Do not infer protection against public write or cross-tenant app requests from its PASS.\n\nS3 encrypts new objects by default. If policy requires a specific KMS key, inspect object metadata/inventory as well as defaults and key policies/grants. A bucket default change does not retroactively rewrite existing objects. If you require explicit encryption request headers, assess integrations that rely on bucket defaults and log-delivery permissions.\n\nKMS rotation strategy depends on key type and origin. Rotation does not revoke data access or solve compromised credentials. Review key administration, grants, scheduled deletion, recovery-key availability and access to encrypted backups separately.\n\n## Release control\n\nJoin deployed artifact SHA/digest to source commit, authorized reviewer, exact approved SHA, required checks and release time. An old approval for the same PR is not enough. Test self-approval, late approval, changed commits, administrator bypass and emergency changes. Retain required status checks and environment approvals in addition to the source review. Constrain OIDC trust to approved repository/audience/environment claims and restrict the deployment role.\n\nPolicy-as-code gates should reject known-bad plans before deployment; Config-style monitoring detects post-deployment drift. Both need reviewed logic, parameter versioning and failure tests. Retain source, plan, policy results, approved artifact and runtime digest as a traceable chain.\n\n## Vulnerability and incident handling\n\nReconcile running images/instances/functions to supported scanners. Prioritize by exposure and exploitability as well as severity, document deadlines and exceptions, deploy fixes and preserve rescans. A suppressed finding is not proof of remediation.\n\nFor a credential compromise exercise: capture detection and triage, classify impact, restrict affected access, preserve relevant logs, assess customer-data exposure, decide required communications with legal/management, recover with validated access and complete the after-action review. Test routing from GuardDuty/application signal to actual owner response and escalation. Do not stop at service enablement.\n\n## Backup and recovery\n\nMap every committed asset to recovery point cadence, retention, custody, key dependency and restoration procedure. Reconcile failures and missing assets. Multi-AZ failover and backup recovery address different risks.\n\nRestore an isolated copy using approved procedures, bring up dependencies, verify application functions and data integrity, and measure time from disruption start to **validated service recovery**. Measure recovered-data timestamp relative to disruption start. Exercise loss of key access and an unavailable dependency, then record cleanup. AWS Backup restore testing can support job orchestration; application validation and commitment assessment remain necessary.\n\n## Continuous operations calendar\n\n| Cadence | Expected operation | Independent check |\n|---|---|---|\n| Per event | Termination, deployment, incident, sensitive-data disposal | Full eligible event reconciliation and completion evidence |\n| Daily | Config/asset collection, backup and scanner intake | Expected/observed resource counts, freshness and heartbeat |\n| Weekly | Alerts, vulnerabilities and failed/unknown results | Aging, assigned owners, actual corrective progress |\n| Monthly | Control review, evidence access, capacity and pipeline health | Missing-run ledger, review decisions and escalation |\n| Quarterly | Access recertification, recovery exercise, oversight | Population completeness, independent retest, approved action follow-up |\n| Annually/material change | Risk, policies, training, vendor reports and boundary | Updated commitments, report coverage and design adequacy |\n\nThe calendar supports period evidence; it is not a mandatory SOC 2 schedule. Adopt frequencies justified by the system's risks and commitments.\n"
+    },
+    {
+      "id": "10",
+      "title": "Category decisions and common-control reuse",
+      "content": "# Category decisions and common-control reuse\n\nThis scenario selects Security, Availability and Confidentiality. Category selection follows service commitments and the engagement, not a desire to display every category. CC1–CC9 are common groupings, and the additional A1/C1/PI1/P-series criteria address category-specific objectives. Read the authoritative AICPA criteria when preparing a real engagement.\n\n## Availability\n\nConnect customer availability commitments to measured capacity, environmental protection, recovery assets and tested recovery. A1.1 concerns capacity; A1.2 contributes through environmental protections, backups and recovery infrastructure; A1.3 addresses recovery testing. The original catalog splits capacity, backup coverage and restore effectiveness to avoid equating a successful backup job with recovered service.\n\n## Confidentiality\n\nIdentify information designated confidential, control access and transfer through its lifecycle, and dispose of it according to objectives. C1.1/C1.2 complement access and data controls. Encryption is one supporting mechanism; classification, authorization, retention and disposal remain necessary. Account for copies, object versions, backups and locked audit evidence.\n\n## Processing Integrity extension\n\nEXT-01 adds process specifications and reconciliations across information/input, processing, output and storage. Define what an accepted input is, what complete/correct/authorized processing means, how duplicate jobs are handled, and how lost outputs are detected. Trace identifiers and counts through queues and retries. Seed dropped, duplicate and unauthorized records. A checksum can confirm bytes while the business transformation remains wrong.\n\nThis is an optional design exercise; no pipeline attestation or automated Processing Integrity test is claimed here.\n\n## Privacy extension\n\nEXT-02/03 consider notices and choice, collection conditions, use/retention/disposal, access/correction, disclosures, quality and monitoring. A rights workflow needs appropriate identity verification without collecting excessive new data. A deletion request needs handling across the actual lifecycle and applicable retention requirements.\n\nConfidentiality covers designated information; Privacy covers commitments for personal information. Omitting Privacy from a SOC 2 examination does not waive privacy law, contracts or customer promises. Legal review is needed for actual jurisdictions and rights. This project does not provide jurisdiction-specific compliance conclusions.\n\n## Reuse without false equivalence\n\nAn identity removal record might support SOC 2 logical access, an ISO 27001 access-management control and a NIST access-control requirement. That does not make the entire requirements identical. Record mapping rationale, relevant clause/version, scope, coverage and remaining obligations. Test the internal objective once where appropriate, then review each framework's distinct requirements with qualified reviewers.\n\nFor example, IAM-04's timestamp check supports prompt access removal, but does not prove the completeness of access paths or the entire SOC 2 CC6.2/CC6.3 criteria. A policy or training criterion cannot be satisfied by reusing a bucket posture result. Avoid \"one test certifies every framework\" language.\n"
+    },
+    {
+      "id": "11",
+      "title": "Learner workshop with worked reasoning",
+      "content": "# Learner workshop with worked reasoning\n\n## Track 1: beginner, no AWS account\n\n1. Read the foundations and explain SOC 2, Type I/II, criterion, control, population and evidence in your own words.\n2. Open System & scope. Trace one upload from customer to authorized storage and logging. Identify application authorization versus AWS access boundaries.\n3. Pick IAM-04. Explain its risk, owner, population, frequency, evidence and limits without mentioning a tool first.\n4. Run the offline lab. Identify one PASS, one FAIL, one UNKNOWN and the approved exclusion. Explain why the denominator is 20.\n5. Read F-01 and propose a retest that checks usable access, not a closed ticket.\n\nAcceptance: you can describe the commitment → risk → control → test → evidence → remediation chain and identify who owns the management assertion and independent opinion.\n\n## Track 2: assurance engineering\n\n1. Copy the fixture; make deploy-01 approved at an earlier SHA. Expected: FAIL for that deployment.\n2. Restore the correct SHA but set checks_passed to the string \"true\". Expected: UNKNOWN.\n3. Remove customer-primary from records. Expected: UNKNOWN for that expected bucket, not a reduced population count.\n4. Duplicate a record. Expected: the run rejects reconciliation and all results become UNKNOWN.\n5. Set an observation beyond the evaluation time. Expected: UNKNOWN.\n6. Change an approved threshold without updating the scope hash. Expected: snapshot mismatch, UNKNOWN run.\n7. Keep recovery within four hours but move recovered data two hours behind disruption. Expected: RPO FAIL despite acceptable RTO.\n8. Run manifest verification, modify a copy of an artifact and rerun. Expected: integrity check failure.\n\nAcceptance: each output explains the exact assertion and limitation. Preserve separate baseline/fault/retest outputs rather than editing accepted evidence.\n\n## Track 3: optional authorized AWS sandbox\n\nReview an explicit account/region/bucket scope and named read-only profile. Use the Config collector against an existing active public-read rule. Inspect every raw page, expected/observed identity and native observation timestamp. Simulate a denied read with a restricted test role if authorized. Expected: collection-error evidence, then UNKNOWN in evaluation. Verify a newly collected stale native evaluation stays UNKNOWN.\n\nAcceptance: a reviewer can trace normalized results to native input and confirm that no API error or missing page is treated as compliance. Live evidence remains restricted and outside the public site.\n\n## Worked answers\n\n- Baseline expected population: 21 items. Observed: 20. One missing expected item remains UNKNOWN. The approved public-docs exclusion removes one item from applicability, leaving 20.\n- Narrow assertion pass rate: 5 / (5 + 8 + 7) = 25%. It is neither a criterion-coverage percentage nor a SOC 2 readiness score.\n- Two leavers pass at 30 and 60 minutes. A three-hour removal and verified active access after the deadline fail; a missing final-removal conclusion is UNKNOWN.\n- Release failures include self-approval, wrong approved SHA and approval after deployment. Missing approval and a string boolean are UNKNOWN.\n- Recovery distinguishes late service restoration, excessive data lag and missing application sign-off.\n- Closure requires new source evidence and independent testing of the implemented fix. A synthetic mutation proves logic behavior, not a production correction.\n\nUse the interactive Review & practice section for additional explain-back questions. Answer first, then reveal the reasoning.\n"
+    },
+    {
+      "id": "12",
+      "title": "Source register",
+      "content": "# Source register\n\nReviewed 2026-10-03. AICPA and official AWS references support the framework and service details. All scenarios, internal controls and explanatory prose are original illustrative applications. This register does not reproduce licensed criteria or restricted provider reports. Source review does not imply live AWS validation. Recheck current service behavior for actual implementations.\n\n## AICPA Trust Services Criteria, 2017 with 2022 points of focus\n\n[AICPA Trust Services Criteria, 2017 with 2022 points of focus](https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022)\n\nCriteria references; original control designs and paraphrased teaching explanations. Download may require a free account.\n\n## AICPA Description Criteria, 2018 with 2022 guidance\n\n[AICPA Description Criteria, 2018 with 2022 guidance](https://www.aicpa-cima.com/resources/download/get-description-criteria-for-your-organizations-soc-2-r-report)\n\nSystem-description preparation; download may require a free account.\n\n## AICPA SOC suite and illustrative report resources\n\n[AICPA SOC suite and illustrative report resources](https://www.aicpa-cima.com/resources/landing/system-and-organization-controls-soc-suite-of-services)\n\nReport types and practitioner resources.\n\n## AWS shared responsibility\n\n[AWS shared responsibility](https://aws.amazon.com/compliance/shared-responsibility-model/)\n\nProvider/customer boundary.\n\n## AWS SOC FAQ\n\n[AWS SOC FAQ](https://aws.amazon.com/compliance/soc-faqs/)\n\nAWS reports, Artifact and report use.\n\n## AWS Security Reference Architecture\n\n[AWS Security Reference Architecture](https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/welcome.html)\n\nMulti-account design reference; verify services and implementation for your environment.\n\n## IAM policy evaluation logic\n\n[IAM policy evaluation logic](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html)\n\nEffective-access caveats.\n\n## IAM MFA API access\n\n[IAM MFA API access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html)\n\nMFA context and enforcement.\n\n## Identity Center authentication sessions\n\n[Identity Center authentication sessions](https://docs.aws.amazon.com/singlesignon/latest/userguide/authconcept.html)\n\nRole sessions can persist independently of the IdP session.\n\n## IAM OIDC federation\n\n[IAM OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html)\n\nCI workload identity.\n\n## S3 server-side encryption\n\n[S3 server-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html)\n\nDefaults and existing object caveats.\n\n## Config S3 public-read managed rule\n\n[Config S3 public-read managed rule](https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-public-read-prohibited.html)\n\nNarrow assertion used by the live collector.\n\n## AWS Config rule evaluation\n\n[AWS Config rule evaluation](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)\n\nResource coverage and evaluation semantics.\n\n## Config compliance API\n\n[Config compliance API](https://docs.aws.amazon.com/config/latest/APIReference/API_GetComplianceDetailsByResource.html)\n\nPagination and timestamps; no INSUFFICIENT_DATA filtering.\n\n## CloudTrail data events\n\n[CloudTrail data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)\n\nExplicit selectors and data-plane logging.\n\n## CloudTrail integrity validation\n\n[CloudTrail integrity validation](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html)\n\nDigest delivery versus actual validation.\n\n## S3 Object Lock\n\n[S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)\n\nRetention and custody choices.\n\n## GuardDuty findings\n\n[GuardDuty findings](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html)\n\nThreat finding lifecycle.\n\n## Inspector findings\n\n[Inspector findings](https://docs.aws.amazon.com/inspector/latest/user/findings-managing.html)\n\nVulnerability findings and remediation.\n\n## AWS Backup restore testing\n\n[AWS Backup restore testing](https://docs.aws.amazon.com/aws-backup/latest/devguide/restore-testing.html)\n\nRestore exercises and validation.\n\n## RDS Multi-AZ\n\n[RDS Multi-AZ](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)\n\nAvailability architecture.\n\n## AWS Audit Manager SOC 2 framework\n\n[AWS Audit Manager SOC 2 framework](https://docs.aws.amazon.com/audit-manager/latest/userguide/SOC2.html)\n\nAutomated evidence support; not independent attestation.\n\n## Athena CloudTrail queries\n\n[Athena CloudTrail queries](https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html)\n\nSchema/partition setup for provided SQL.\n\n## Organizations service control policies\n\n[Organizations service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html)\n\nOrganization guardrails and scope limitations.\n\n## KMS key rotation\n\n[KMS key rotation](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)\n\nRotation eligibility and historical keys.\n"
+    }
+  ]
+}

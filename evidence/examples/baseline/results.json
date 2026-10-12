@@ -1,0 +1,150 @@
+{
+  "schema_version": "2.0.0",
+  "mode": "synthetic",
+  "as_of": "2026-09-30T15:00:00Z",
+  "test_version": "2.0.0",
+  "scope_sha256": "b7be9822c22580fb8ae29fa9b62838db466aec0dd4067711318120570c46004a",
+  "expected_count": 21,
+  "observed_count": 20,
+  "unexpected": [],
+  "duplicate_identities": [],
+  "counts": {
+    "PASS": 5,
+    "FAIL": 8,
+    "UNKNOWN": 7,
+    "NOT_APPLICABLE": 1
+  },
+  "pass_rate": 25.0,
+  "denominator_note": "PASS / (PASS + FAIL + UNKNOWN); approved exclusions shown separately. Narrow assertions only.",
+  "results": [
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-primary",
+      "state": "PASS",
+      "reason": "Narrow assertion: Config public-read rule returned COMPLIANT"
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-export",
+      "state": "FAIL",
+      "reason": "Narrow assertion: Config public-read rule returned NON_COMPLIANT"
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-archive",
+      "state": "UNKNOWN",
+      "reason": "Observation is stale or in the future"
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-new",
+      "state": "UNKNOWN",
+      "reason": "Expected population item has no source record"
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "customer-evidence",
+      "state": "UNKNOWN",
+      "reason": "No conclusive applicable Config public-read evaluation"
+    },
+    {
+      "control_id": "DAT-01",
+      "resource_id": "public-docs",
+      "state": "NOT_APPLICABLE",
+      "reason": "Approved public documentation delivery; no customer content"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-01",
+      "state": "PASS",
+      "reason": "Final removal verified in 0.5 hours"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-02",
+      "state": "FAIL",
+      "reason": "All-path removal took 3 hours; limit 1"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-03",
+      "state": "FAIL",
+      "reason": "Known active access after removal deadline"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-04",
+      "state": "UNKNOWN",
+      "reason": "Final effective-access removal has not been established"
+    },
+    {
+      "control_id": "IAM-04",
+      "resource_id": "leaver-05",
+      "state": "PASS",
+      "reason": "Final removal verified in 1 hours"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-01",
+      "state": "PASS",
+      "reason": "Exact deployed SHA independently approved before deployment; required checks passed"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-02",
+      "state": "FAIL",
+      "reason": "Deployer approved their own change"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-03",
+      "state": "FAIL",
+      "reason": "Approved SHA differs from deployed SHA"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-04",
+      "state": "UNKNOWN",
+      "reason": "Approval timestamp is missing"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-05",
+      "state": "UNKNOWN",
+      "reason": "Successful checks or reviewer authorization is not verified"
+    },
+    {
+      "control_id": "CHG-01",
+      "resource_id": "deploy-06",
+      "state": "FAIL",
+      "reason": "Approval happened after deployment"
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-01",
+      "state": "PASS",
+      "reason": "Validated recovery: RTO 2 hours / RPO 0.5 hours"
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-02",
+      "state": "FAIL",
+      "reason": "RTO 5 hours / RPO 0.5 hours exceed an approved limit"
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-03",
+      "state": "FAIL",
+      "reason": "RTO 2 hours / RPO 2 hours exceed an approved limit"
+    },
+    {
+      "control_id": "RES-02",
+      "resource_id": "exercise-04",
+      "state": "UNKNOWN",
+      "reason": "Application/data validation evidence is missing"
+    }
+  ],
+  "logic_sha256": "b16926f5519cce50d5e4af80f621aa07a8598ac2c5d5b03003ef4127cca187d0",
+  "input_sha256": "de6e0bf32e3b5ac6b100aa1c28833c2ff3e2fa6dea5bed1cf72103d4d28aefc9",
+  "scope_file_sha256": "f06050c34147fc8d201972f339398cefdef29dd6e629873b6a9bf2d548c9afa7"
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+evidence/local-run*/
+evidence/live*/
+data/aws-scope.local.json
+.playwright/

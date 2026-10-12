@@ -1,0 +1,22 @@
+control_id,resource_id,state,reason
+DAT-01,customer-primary,PASS,Narrow assertion: Config public-read rule returned COMPLIANT
+DAT-01,customer-export,FAIL,Narrow assertion: Config public-read rule returned NON_COMPLIANT
+DAT-01,customer-archive,UNKNOWN,Observation is stale or in the future
+DAT-01,customer-new,UNKNOWN,Expected population item has no source record
+DAT-01,customer-evidence,UNKNOWN,No conclusive applicable Config public-read evaluation
+DAT-01,public-docs,NOT_APPLICABLE,Approved public documentation delivery; no customer content
+IAM-04,leaver-01,PASS,Final removal verified in 0.5 hours
+IAM-04,leaver-02,FAIL,All-path removal took 3 hours; limit 1
+IAM-04,leaver-03,FAIL,Known active access after removal deadline
+IAM-04,leaver-04,UNKNOWN,Final effective-access removal has not been established
+IAM-04,leaver-05,PASS,Final removal verified in 1 hours
+CHG-01,deploy-01,PASS,Exact deployed SHA independently approved before deployment; required checks passed
+CHG-01,deploy-02,FAIL,Deployer approved their own change
+CHG-01,deploy-03,FAIL,Approved SHA differs from deployed SHA
+CHG-01,deploy-04,UNKNOWN,Approval timestamp is missing
+CHG-01,deploy-05,UNKNOWN,Successful checks or reviewer authorization is not verified
+CHG-01,deploy-06,FAIL,Approval happened after deployment
+RES-02,exercise-01,PASS,Validated recovery: RTO 2 hours / RPO 0.5 hours
+RES-02,exercise-02,FAIL,RTO 5 hours / RPO 0.5 hours exceed an approved limit
+RES-02,exercise-03,FAIL,RTO 2 hours / RPO 2 hours exceed an approved limit
+RES-02,exercise-04,UNKNOWN,Application/data validation evidence is missing

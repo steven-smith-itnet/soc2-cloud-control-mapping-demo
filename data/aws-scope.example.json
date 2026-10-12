@@ -1,0 +1,21 @@
+{
+  "account_id": "444444444444",
+  "region": "us-east-1",
+  "config_rule_name": "soc2-public-read",
+  "source_identifier": "S3_BUCKET_PUBLIC_READ_PROHIBITED",
+  "approved_by": "REPLACE with approving owner",
+  "parameters": {
+    "freshness_hours": 24,
+    "leaver_sla_hours": 1,
+    "rto_hours": 4,
+    "rpo_hours": 1
+  },
+  "expected": [
+    {
+      "control_id": "DAT-01",
+      "resource_id": "REPLACE-with-real-bucket",
+      "resource_type": "AWS::S3::Bucket",
+      "applicable": true
+    }
+  ]
+}
